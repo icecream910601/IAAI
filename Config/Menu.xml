@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<menu>
+	<Modules Title="會員管理" Controller="B_Members" Action="Index" Value="A"  />
+	<Modules Title="關於我們" Controller="B_AboutUs" Action="Index"  Value="B01"  />
+	<Modules Title="組織架構" Controller="/B_Organizations" Action="Index"  Value="B02"  />
+	<Modules Title="沿革" Controller="/B_Histories" Action="Index"  Value="B03"  />
+	<Modules Title="配證會員" Controller="/B_CertifiedMembers" Action="Index"  Value="B04"  />
+	<Modules Title="專家介紹" Controller="" Action=""  Value="B05"  />
+	<Modules Title="類別管理" Controller="/B_NewsCatalogs" Action="Index"  Value="C01"  />
+	<Modules Title="消息" Controller="/B_News2" Action="Index"  Value="C02" />
+
+
+
+</menu>

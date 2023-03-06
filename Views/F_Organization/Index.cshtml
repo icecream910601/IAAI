@@ -1,0 +1,31 @@
+﻿@using System.Text
+@model IAAI.Models.Organization
+
+
+@{
+    ViewBag.RightTitle = "組織架構";
+    ViewBag.SideTitle = "關於我們";
+    ViewBag.MenuItemCount = 5;
+
+    ViewBag.MenuItem0Name = "關於我們";
+    ViewBag.MenuItem0Url = Url.Action("Index", "F_AboutUs");
+
+    ViewBag.MenuItem1Name = "組織架構";
+    ViewBag.MenuItem1Url = Url.Action("Index", "F_Organization");
+
+    ViewBag.MenuItem2Name = "沿革";
+    ViewBag.MenuItem2Url = Url.Action("Index", "F_History"); ;
+
+    ViewBag.MenuItem3Name = "配證會員";
+    ViewBag.MenuItem3Url = Url.Action("Index", "F_CertifiedMembers");
+
+    ViewBag.MenuItem4Name = "專家介紹";
+    ViewBag.MenuItem4Url = Url.Action("Index", "F_Masters");
+
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+}
+
+
+<div class="clearfix _2pi4">
+    @Html.Raw(Model.Organize)
+</div>

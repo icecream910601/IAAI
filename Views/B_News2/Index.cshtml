@@ -1,0 +1,99 @@
+﻿@using IAAI.Models
+@model MvcPaging.IPagedList<IAAI.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+    List<News> listNews = ViewBag.listNews;
+}
+
+<h2>最新消息列表</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm("Index", "B_News2", FormMethod.Get))
+{
+    <div class="form-group">
+        <div class="input-group">
+            @Html.TextBox("searchString", ViewBag.SearchString as string, new { @class = "form-control", placeholder = "Search..." })
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().MyCatalog.Class)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>*@
+        <th>
+            Picture
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Content)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MyCatalog.Class)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Picture)
+                </td>*@
+
+            <td>
+                @if (item.Picture != null)
+                {
+                    <img src="@Url.Content("~/Picture/" + item.Picture)" alt="Certified Member Picture" style="width: 100px; height: 100px;" />
+                }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>*@
+
+            <td>
+                @Html.Raw((item.Content ?? string.Empty).Length > 20 ? (item.Content ?? string.Empty).Substring(0, 20) + "..." : (item.Content ?? string.Empty))
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="pager">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>

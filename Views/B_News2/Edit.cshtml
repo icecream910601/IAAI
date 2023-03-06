@@ -1,0 +1,113 @@
+﻿@model IAAI.Models.News
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>編輯最新消息</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Kendo Editor Test</title>
+        <link rel="stylesheet"
+              href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.common.min.css" />
+        <link rel="stylesheet"
+              href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.default.min.css" />
+        <script src="//kendo.cdn.telerik.com/2016.2.714/js/jquery.min.js"></script>
+        <script src="//kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script>
+    </head>
+
+
+
+
+    <div class="form-horizontal">
+        <h4>News</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.HiddenFor(model => model.Picture)
+                @if (!string.IsNullOrEmpty(Model.Picture))
+                {
+                    <img src="@Url.Content("~/Picture/" + Model.Picture)" style="max-width: 100px; max-height: 100px;" />
+                }
+                <input type="file" name="Picture" />
+                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+        <div>
+            <textarea id="editor" style="width: 100%; height: 500px;">@ViewBag.Content</textarea>
+            <input type="hidden" id="content" name="Content" />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClassId, "ClassId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ClassId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" id="submit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+    $("#editor").kendoEditor({
+        tools: [
+            "formatting",
+            "bold",
+            "italic",
+            "underline",
+            "strikethrough",
+            "foreColor",
+            "backColor",
+            "insertImage",
+
+        ]
+    });
+    var editor = $("#editor").data("kendoEditor");
+    $("#submit").click(function () {
+        $("#content").val(editor.value());
+    });
+</script>
+
