@@ -11,6 +11,7 @@ using IAAI.Models;
 
 namespace IAAI.Controllers
 {
+    [PagePermission]
     [PermissionFilters]
     [Authorize]
     public class B_AboutUsController : Controller
@@ -52,8 +53,15 @@ namespace IAAI.Controllers
 
         public ActionResult Index()
         {
-            var aboutUs = ReadFromDb();
+          var aboutUs = ReadFromDb();
             ViewBag.About = aboutUs?.About;
+
+            if (TempData.Peek("ErrorMessage") != null)
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"];
+                TempData.Keep("ErrorMessage");
+            }
+
             return View();
         }
 

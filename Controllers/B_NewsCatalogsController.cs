@@ -11,7 +11,7 @@ using IAAI.Models;
 
 namespace IAAI.Controllers
 {
-
+    [PagePermission]
     [PermissionFilters]
     [Authorize]
 

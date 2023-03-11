@@ -36,6 +36,16 @@ namespace IAAI.Models
         public System.Data.Entity.DbSet<IAAI.Models.NewsCatalog> NewsCatalogs { get; set; }
 
         public virtual DbSet<Master> Masters { get; set; }
+
+
+        public System.Data.Entity.DbSet<IAAI.Models.ForumMember> ForumMembers { get; set; }
+
+        public virtual DbSet<ForumMemberExp> ForumMemberExps { get; set; }
+        public System.Data.Entity.DbSet<IAAI.Models.Forum> Forum { get; set; }
+        public virtual DbSet<ForumReply> ForumReplies { get; set; }
+
+
+
     }
 
     //public class MyEntity

@@ -1,0 +1,126 @@
+﻿@model IEnumerable<IAAI.Models.ForumMember>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmedPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCurrentMember)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Copy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Education)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfirmedPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MembershipType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCurrentMember)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Copy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Education)
+        </td>
+        <td>
+            @*在Index中的ActionLink有一個id參數是使用item.Id，這是ForumMember的Id，而不是ForumMemberExp的Id。如果你想要使用ForumMemberExp的Id來編輯資料，可以透過ForumMember的外鍵ForumMemberId找到對應的ForumMemberExp的資料*@
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@ 
+            @Html.ActionLink("Edit", "Edit", new { forumMemberId = item.Id })|
+            @Html.ActionLink("Details", "Details", new { forumMemberId = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { forumMemberId = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -36,7 +36,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
                 @Html.HiddenFor(model => model.Picture)
                 @if (!string.IsNullOrEmpty(Model.Picture))
                 {

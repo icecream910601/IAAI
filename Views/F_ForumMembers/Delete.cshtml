@@ -1,0 +1,162 @@
+﻿@model IAAI.Models.ForumMemberExp
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+}
+
+<h2>刪除討論區會員</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ForumMember</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.ConfirmedPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.ConfirmedPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.MembershipType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.MembershipType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.IsCurrentMember)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.IsCurrentMember)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Copy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Copy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.JobUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.JobUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Education)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Education)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "F_ForumMembers", new { id = Model.ForumMember.Id }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

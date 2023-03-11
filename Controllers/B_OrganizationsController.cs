@@ -11,7 +11,7 @@ using IAAI.Models;
 
 namespace IAAI.Controllers
 {
-
+    [PagePermission]
     [PermissionFilters]
     [Authorize]
     public class B_OrganizationsController : Controller

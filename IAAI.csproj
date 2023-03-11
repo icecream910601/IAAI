@@ -152,6 +152,7 @@
     <Compile Include="Controllers\F_AboutUsController.cs" />
     <Compile Include="Controllers\F_CertifiedMembersController.cs" />
     <Compile Include="Controllers\F_ContactController.cs" />
+    <Compile Include="Controllers\F_ForumMembersController.cs" />
     <Compile Include="Controllers\F_HistoryController.cs" />
     <Compile Include="Controllers\F_MastersController.cs" />
     <Compile Include="Controllers\F_OrganizationController.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Controllers\B_MembersController.cs" />
     <Compile Include="Controllers\B_OrganizationsController.cs" />
     <Compile Include="Controllers\F_NewsController.cs" />
+    <Compile Include="Filter\PagePermission.cs" />
     <Compile Include="Filter\PermissionFilters.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,9 +217,21 @@
     <Compile Include="Migrations\202303030944366_addPermissionIcon.Designer.cs">
       <DependentUpon>202303030944366_addPermissionIcon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303060645509_addForumMemberTable.cs" />
+    <Compile Include="Migrations\202303060645509_addForumMemberTable.Designer.cs">
+      <DependentUpon>202303060645509_addForumMemberTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303060746275_addForumAndReplyTable.cs" />
+    <Compile Include="Migrations\202303060746275_addForumAndReplyTable.Designer.cs">
+      <DependentUpon>202303060746275_addForumAndReplyTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutUs.cs" />
     <Compile Include="Models\CertifiedMember.cs" />
+    <Compile Include="Models\Forum.cs" />
+    <Compile Include="Models\ForumMember.cs" />
+    <Compile Include="Models\ForumMemberExp.cs" />
+    <Compile Include="Models\ForumReply.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\IAAIDbContext.cs" />
     <Compile Include="Models\Member.cs" />
@@ -227,6 +241,7 @@
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\Utility.cs" />
+    <Compile Include="Models\ViewForumMember.cs" />
     <Compile Include="Models\ViewLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -556,6 +571,11 @@
     <Content Include="Views\B_Masters\Index.cshtml" />
     <Content Include="Views\F_Masters\Index.cshtml" />
     <Content Include="Views\F_Masters\Details.cshtml" />
+    <Content Include="Views\F_ForumMembers\Create.cshtml" />
+    <Content Include="Views\F_ForumMembers\Delete.cshtml" />
+    <Content Include="Views\F_ForumMembers\Details.cshtml" />
+    <Content Include="Views\F_ForumMembers\Edit.cshtml" />
+    <Content Include="Views\F_ForumMembers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -612,6 +632,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303030944366_addPermissionIcon.resx">
       <DependentUpon>202303030944366_addPermissionIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303060645509_addForumMemberTable.resx">
+      <DependentUpon>202303060645509_addForumMemberTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303060746275_addForumAndReplyTable.resx">
+      <DependentUpon>202303060746275_addForumAndReplyTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,7 +12,7 @@ using MvcPaging;
 
 namespace IAAI.Controllers
 {
-
+    [PagePermission]
     [PermissionFilters]
     [Authorize]
     public class B_News2Controller : Controller
