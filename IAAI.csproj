@@ -152,6 +152,7 @@
     <Compile Include="Controllers\F_AboutUsController.cs" />
     <Compile Include="Controllers\F_CertifiedMembersController.cs" />
     <Compile Include="Controllers\F_ContactController.cs" />
+    <Compile Include="Controllers\F_ForumController.cs" />
     <Compile Include="Controllers\F_ForumMembersController.cs" />
     <Compile Include="Controllers\F_HistoryController.cs" />
     <Compile Include="Controllers\F_MastersController.cs" />
@@ -572,6 +573,12 @@
     <Content Include="Views\F_ForumMembers\Edit.cshtml" />
     <Content Include="Views\F_ForumMembers\Index.cshtml" />
     <Content Include="Views\F_ForumMembers\ForumLogin.cshtml" />
+    <Content Include="Views\F_Forum\Create.cshtml" />
+    <Content Include="Views\F_Forum\Delete.cshtml" />
+    <Content Include="Views\F_Forum\Details.cshtml" />
+    <Content Include="Views\F_Forum\Edit.cshtml" />
+    <Content Include="Views\F_Forum\Index.cshtml" />
+    <Content Include="Views\F_Forum\Reply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

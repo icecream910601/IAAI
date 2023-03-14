@@ -1,12 +1,13 @@
 ﻿@model IAAI.Models.ViewForumMemberLogin
 
 
-
 @{
-  
+
     ViewBag.RightTitle = "會員登入";
     ViewBag.SideTitle = "會員專區";
-    ViewBag.Title = "ForumLogin";
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "會員登入";
+    ViewBag.MenuItem0Url = Url.Action("ForumLogin", "F_ForumMembers");
     Layout = "~/Views/Shared/FrontLayout.cshtml";
 }
 

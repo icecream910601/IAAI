@@ -62,7 +62,7 @@
 
 <body>
 
-    <div class="body-inner">
+    <div class="body-inner" >
 
         <!-- Header start -->
         <header id="header" class="header-solid">
@@ -136,9 +136,8 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="會員專區">會員專區 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">會員登入</a></li>
-                                            <li><a href="#">檔案下載</a></li>
-                                            <li><a href="@Url.Action("Index", "F_ForumMember")">會員註冊</a></li>
+                                            <li><a href="@Url.Action("ForumLogin", "F_ForumMembers")">會員登入</a></li>
+                                            <li><a href="@Url.Action("Create", "F_ForumMembers")">會員註冊</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
@@ -344,9 +343,15 @@
                 </div>
             </div><!-- Copyright end -->
 
+
+            
             <div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
-                <button class="btn btn-primary" title="Back to Top">
+                @*<button class="btn btn-primary" title="Back to Top">
                     <i class="fa fa-angle-double-up"></i>
+                </button>*@
+                <button class="btn btn-primary" title="Back to Top">
+                    <a href="#header"><i class="fa fa-angle-double-up"></i></a>
+                    
                 </button>
             </div>
 

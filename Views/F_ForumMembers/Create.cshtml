@@ -4,9 +4,21 @@
 
 @{
     List<ForumMemberExp> forumMemberExp = ViewBag.MemberExp;
-    ViewBag.Title = "Create";
+
+    ViewBag.RightTitle = "會員註冊";
+    ViewBag.SideTitle = "會員專區";
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "會員註冊";
+    ViewBag.MenuItem0Url = Url.Action("Create", "F_ForumMembers");
+
     Layout = "~/Views/Shared/FrontLayout.cshtml";
 }
+
+@if (!string.IsNullOrEmpty(ViewBag.Msg))
+{
+    <p>@ViewBag.Msg</p>
+}
+
 
 <h2>新增討論區會員</h2>
 
@@ -153,7 +165,7 @@
         @*灰色開始*@
         <div class="boxg">
             <h4 class="col-sm-2"><i class="fa fa-briefcase"></i> 服務經歷</h4>
-            
+
 
             @*區塊1開始*@
             <div class="form-group">
@@ -317,8 +329,8 @@
 }
 
 @*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 
 
 

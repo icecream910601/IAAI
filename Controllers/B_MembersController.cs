@@ -158,6 +158,7 @@ namespace IAAI.Controllers
             {
                 ViewBag.Msg = "格式不正確/此帳號已註冊過";
 
+                //顯示
                 List<Permission> permissions = db.Permissions.ToList();  //將資料放到記憶體 //將物件轉成要的東西
                 var roots = permissions.Where(x => x.ParentId == null);  //1.找跟節點
 
@@ -172,7 +173,6 @@ namespace IAAI.Controllers
 
                 return View();
 
-               
             }
          
         }

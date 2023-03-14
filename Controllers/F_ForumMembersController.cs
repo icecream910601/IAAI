@@ -32,8 +32,10 @@ namespace IAAI.Controllers
                 ForumMember forumMember = db.ForumMembers.FirstOrDefault(x => x.Account == viewForumMemberLoginLogin.Account && x.Password == viewForumMemberLoginLogin.Password);
                 if (forumMember != null) // 如果帳號和密碼正確
                 {
+                    Session["Id"] = forumMember.Id;
+                    Session["Name"] = forumMember.Name;
                     Session["Account"] = viewForumMemberLoginLogin.Account; // 將使用者帳號存到 Session 中
-                    return RedirectToAction("Index", "F_ForumMembers"); // 重定向到論壇會員列表頁面
+                    return RedirectToAction("Index", "F_Forum"); // 重定向到論壇會員列表頁面
                 }
                 else // 如果帳號和密碼不正確
                 {
@@ -44,9 +46,15 @@ namespace IAAI.Controllers
             return View(viewForumMemberLoginLogin);
         }
 
+        public ActionResult Logout()
+        {
+            // 清除 Session 中的資料
+            Session.Clear();
+            Session.Abandon();
 
-
-
+            // 重新導向至首頁
+            return RedirectToAction("ForumLogin", "F_ForumMembers");
+        }
 
 
         // GET: F_ForumMembers
@@ -122,7 +130,9 @@ namespace IAAI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ForumMember forumMember, List<ForumMemberExp> forumMemberExp, HttpPostedFileBase Picture)
         {
-            if (ModelState.IsValid)
+            var existingMember = db.ForumMembers.Where(m => m.Account == forumMember.Account).FirstOrDefault();
+
+            if (ModelState.IsValid && existingMember == null )
             {
                 if (Picture != null)
                 {
@@ -147,6 +157,10 @@ namespace IAAI.Controllers
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Msg = "格式不正確/此帳號已註冊過";
             }
 
             return View();
@@ -174,6 +188,8 @@ namespace IAAI.Controllers
         //}
         public ActionResult Edit(int? forumMemberId)
         {
+
+
             if (forumMemberId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -214,7 +230,7 @@ namespace IAAI.Controllers
         //}
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ForumMember forumMember, List<ForumMemberExp> forumMemberExp, HttpPostedFileBase Picture,string newPassword,string newConfirmedPassword)
+        public ActionResult Edit(ForumMember forumMember, List<ForumMemberExp> forumMemberExp, HttpPostedFileBase Picture, string newPassword, string newConfirmedPassword)
         {
             var expList = db.ForumMemberExps.Where(fme => fme.ForumMemberId == forumMember.Id).ToList();
 
@@ -241,7 +257,7 @@ namespace IAAI.Controllers
                 db.Entry(forumMember).State = EntityState.Modified;
 
                 // 刪除原本的會員經驗資料
-               //
+                //
                 foreach (var exp in expList)
                 {
                     db.ForumMemberExps.Remove(exp);
