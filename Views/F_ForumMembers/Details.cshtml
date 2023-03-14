@@ -1,6 +1,8 @@
-﻿@model IAAI.Models.ForumMember
+﻿@using IAAI.Models
+@model IAAI.Models.ForumMember
 
 @{
+    List<ForumMemberExp> forumMemberExp = ViewBag.MemberExp;
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/FrontLayout.cshtml";
 }
@@ -19,7 +21,7 @@
             @Html.DisplayFor(model => model.Account)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Password)
         </dt>
 
@@ -33,7 +35,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.ConfirmedPassword)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -110,9 +112,15 @@
         <dt>
             @Html.DisplayNameFor(model => model.Copy)
         </dt>
-
-        <dd>
+        
+        @*<dd>
             @Html.DisplayFor(model => model.Copy)
+        </dd>*@
+        <dd>
+            @if (Model.Copy != null)
+            {
+                <img src="@Url.Content("~/Picture/" + Model.Copy)" alt="Certified Member Picture" style="width: 100px; height: 100px;" />
+            }
         </dd>
 
         <dt>
@@ -139,9 +147,61 @@
             @Html.DisplayFor(model => model.Education)
         </dd>
 
+        @*灰色區域*@
+        @foreach (var exp in forumMemberExp)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => exp.HistoryUnit)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.HistoryUnit)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.HistoryJobTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.HistoryJobTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.StartYear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.StartYear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.StartMonth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.StartMonth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.EndYear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.EndYear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.EndMonth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.EndMonth)
+            </dd>
+        }
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { forumMemberId = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

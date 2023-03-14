@@ -241,7 +241,7 @@
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\Utility.cs" />
-    <Compile Include="Models\ViewForumMember.cs" />
+    <Compile Include="Models\ViewForumMemberLogin.cs" />
     <Compile Include="Models\ViewLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -536,11 +536,6 @@
     <Content Include="Views\B_CertifiedMembers\Details.cshtml" />
     <Content Include="Views\B_CertifiedMembers\Edit.cshtml" />
     <Content Include="Views\B_CertifiedMembers\Index.cshtml" />
-    <Content Include="Views\ViewLogins\Create.cshtml" />
-    <Content Include="Views\ViewLogins\Delete.cshtml" />
-    <Content Include="Views\ViewLogins\Details.cshtml" />
-    <Content Include="Views\ViewLogins\Edit.cshtml" />
-    <Content Include="Views\ViewLogins\Index.cshtml" />
     <Content Include="Views\B_Members\Login.cshtml" />
     <Content Include="Views\B_Organizations\Index.cshtml" />
     <Content Include="Views\B_Histories\Index.cshtml" />
@@ -576,6 +571,7 @@
     <Content Include="Views\F_ForumMembers\Details.cshtml" />
     <Content Include="Views\F_ForumMembers\Edit.cshtml" />
     <Content Include="Views\F_ForumMembers\Index.cshtml" />
+    <Content Include="Views\F_ForumMembers\ForumLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

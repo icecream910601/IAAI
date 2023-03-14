@@ -14,9 +14,49 @@ namespace IAAI.Controllers
     {
         private IAAIDbContext db = new IAAIDbContext();
 
+
+        // GET: Login/Create
+        public ActionResult ForumLogin()
+        {
+            return View();
+        }
+
+
+        // POST: Login/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForumLogin(ViewForumMemberLogin viewForumMemberLoginLogin)
+        {
+            if (ModelState.IsValid)
+            {
+                ForumMember forumMember = db.ForumMembers.FirstOrDefault(x => x.Account == viewForumMemberLoginLogin.Account && x.Password == viewForumMemberLoginLogin.Password);
+                if (forumMember != null) // 如果帳號和密碼正確
+                {
+                    Session["Account"] = viewForumMemberLoginLogin.Account; // 將使用者帳號存到 Session 中
+                    return RedirectToAction("Index", "F_ForumMembers"); // 重定向到論壇會員列表頁面
+                }
+                else // 如果帳號和密碼不正確
+                {
+                    ViewBag.message = "帳號或密碼不正確!"; // 增加錯誤訊息
+                }
+            }
+
+            return View(viewForumMemberLoginLogin);
+        }
+
+
+
+
+
+
         // GET: F_ForumMembers
         public ActionResult Index()
         {
+            if (Session["Account"] == null)
+            {
+                return RedirectToAction("ForumLogin", "F_ForumMembers"); // 重定向到登入頁面
+            }
+
             return View(db.ForumMembers.ToList());
         }
 
@@ -32,6 +72,15 @@ namespace IAAI.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<ForumMemberExp> expList = db.ForumMemberExps.Where(fme => fme.ForumMemberId == forumMemberId).ToList();
+            while (expList.Count() < 3) // 檢查 expList 數量是否足夠，如果不足則新增空白的 ForumMemberExp 物件
+            {
+                expList.Add(new ForumMemberExp { ForumMemberId = forumMemberId.Value });
+            }
+            ViewBag.MemberExp = expList;
+
+
             return View(forumMember);
         }
 
@@ -69,49 +118,60 @@ namespace IAAI.Controllers
 
         //    return View();
         //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ForumMember forumMember, ForumMemberExp forumMemberExp1, ForumMemberExp forumMemberExp2, ForumMemberExp forumMemberExp3)
+        public ActionResult Create(ForumMember forumMember, List<ForumMemberExp> forumMemberExp, HttpPostedFileBase Picture)
         {
             if (ModelState.IsValid)
             {
+                if (Picture != null)
+                {
+                    if (Picture.ContentType.IndexOf("image", System.StringComparison.Ordinal) == -1)
+                    {
+                        ViewBag.Message = "檔案型態錯誤!";
+                        return View(forumMember);
+                    }
+
+                    forumMember.Copy = CertifiedMember.SaveUpImage(Picture);
+                }
+
                 db.ForumMembers.Add(forumMember);
                 db.SaveChanges();
 
-                forumMember.ForumMemberExps = new List<ForumMemberExp>();
-
-                if (forumMemberExp1 != null)
+                foreach (var exp in forumMemberExp)
                 {
-                    forumMemberExp1.ForumMemberId = forumMember.Id;
-                    forumMemberExp1.ForumMember = null;
-                    forumMember.ForumMemberExps.Add(forumMemberExp1);
-                }
-
-                if (forumMemberExp2 != null)
-                {
-                    forumMemberExp2.ForumMemberId = forumMember.Id;
-                    forumMemberExp2.ForumMember = null;
-                    forumMember.ForumMemberExps.Add(forumMemberExp2);
-                }
-
-                if (forumMemberExp3 != null)
-                {
-                    forumMemberExp3.ForumMemberId = forumMember.Id;
-                    forumMemberExp3.ForumMember = null;
-                    forumMember.ForumMemberExps.Add(forumMemberExp3);
+                    exp.ForumMemberId = forumMember.Id;
+                    db.ForumMemberExps.Add(exp);
                 }
 
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
+
             return View();
         }
 
 
 
         // GET: F_ForumMembers/Edit/5
+        //public ActionResult Edit(int? forumMemberId)
+        //{
+        //    if (forumMemberId == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    ForumMember forumMember = db.ForumMembers.Find(forumMemberId);
+        //    if (forumMember == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    List<ForumMemberExp> expList = db.ForumMemberExps.Where(fme => fme.ForumMemberId == forumMemberId).ToList();
+        //    ViewBag.MemberExp = expList;
+
+        //    return View(forumMember);
+        //}
         public ActionResult Edit(int? forumMemberId)
         {
             if (forumMemberId == null)
@@ -125,6 +185,10 @@ namespace IAAI.Controllers
             }
 
             List<ForumMemberExp> expList = db.ForumMemberExps.Where(fme => fme.ForumMemberId == forumMemberId).ToList();
+            while (expList.Count() < 3) // 檢查 expList 數量是否足夠，如果不足則新增空白的 ForumMemberExp 物件
+            {
+                expList.Add(new ForumMemberExp { ForumMemberId = forumMemberId.Value });
+            }
             ViewBag.MemberExp = expList;
 
             return View(forumMember);
@@ -150,17 +214,44 @@ namespace IAAI.Controllers
         //}
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ForumMember forumMember, List<ForumMemberExp> memberExpList)
+        public ActionResult Edit(ForumMember forumMember, List<ForumMemberExp> forumMemberExp, HttpPostedFileBase Picture,string newPassword,string newConfirmedPassword)
         {
+            var expList = db.ForumMemberExps.Where(fme => fme.ForumMemberId == forumMember.Id).ToList();
+
             if (ModelState.IsValid)
             {
+                if (Picture != null)
+                {
+                    if (Picture.ContentType.IndexOf("image", System.StringComparison.Ordinal) == -1)
+                    {
+                        ViewBag.Message = "檔案型態錯誤!";
+                        return View(forumMember);
+                    }
+
+                    forumMember.Copy = CertifiedMember.SaveUpImage(Picture);
+                }
+
+                if (!string.IsNullOrEmpty(newPassword) && !string.IsNullOrEmpty(newConfirmedPassword))
+                {
+                    forumMember.HashPassword();
+                    forumMember.HashConfirmedPassword();
+                }
+
                 // 更新會員資訊
                 db.Entry(forumMember).State = EntityState.Modified;
 
-                // 更新會員經驗資料
-                foreach (var memberExp in memberExpList)
+                // 刪除原本的會員經驗資料
+               //
+                foreach (var exp in expList)
                 {
-                    db.Entry(memberExp).State = EntityState.Modified;
+                    db.ForumMemberExps.Remove(exp);
+                }
+
+                // 新增新的會員經驗資料
+                foreach (var exp in forumMemberExp)
+                {
+                    exp.ForumMemberId = forumMember.Id;
+                    db.ForumMemberExps.Add(exp);
                 }
 
                 db.SaveChanges();
@@ -169,7 +260,7 @@ namespace IAAI.Controllers
             }
 
             // 如果有錯誤發生，重新載入經驗資料並返回編輯頁面
-            var expList = db.ForumMemberExps.Where(fme => fme.ForumMemberId == forumMember.Id).ToList();
+            //
             ViewBag.MemberExp = expList;
 
             return View(forumMember);
@@ -193,6 +284,8 @@ namespace IAAI.Controllers
         //    }
         //    return View(forumMember);
         //}
+
+        // GET: F_ForumMembers/Delete/5
         public ActionResult Delete(int? forumMemberId)
         {
             if (forumMemberId == null)
@@ -212,49 +305,58 @@ namespace IAAI.Controllers
                 ForumMember = forumMember
             };
 
-            return View(forumMemberExp);
+            List<ForumMemberExp> expList = db.ForumMemberExps.Where(fme => fme.ForumMemberId == forumMemberId).ToList();
+            ViewBag.MemberExp = expList;
+
+            return View(forumMember);
         }
+
+
+
 
 
 
         //POST: F_ForumMembers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ForumMember forumMember = db.ForumMembers.Find(id);
-            db.ForumMembers.Remove(forumMember);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int? forumMemberId)
+        //public ActionResult DeleteConfirmed(int id)
         //{
-        //    ForumMember forumMember = db.ForumMembers.Find(forumMemberId);
-        //    if (forumMember == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    // Find the ForumMemberExp to delete
-        //    ForumMemberExp forumMemberExp = db.ForumMemberExps.SingleOrDefault(f => f.ForumMemberId == forumMemberId);
-
-        //    // Check if the ForumMemberExp exists
-        //    if (forumMemberExp == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    // Remove both the ForumMemberExp and ForumMember
-        //    db.ForumMemberExps.Remove(forumMemberExp);
+        //    ForumMember forumMember = db.ForumMembers.Find(id);
         //    db.ForumMembers.Remove(forumMember);
-
-        //    // Save changes to the database
         //    db.SaveChanges();
-
         //    return RedirectToAction("Index");
         //}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? forumMemberId)
+        {
+            ForumMember forumMember = db.ForumMembers.Find(forumMemberId);
+            if (forumMember == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Find all the ForumMemberExps to delete
+            var forumMemberExps = db.ForumMemberExps.Where(f => f.ForumMemberId == forumMemberId).ToList();
+
+            // Remove all the ForumMemberExps
+            foreach (var exp in forumMemberExps)
+            {
+                // Set the ForumMemberId to null
+                exp.ForumMemberId = null;
+
+                // Remove the ForumMemberExp
+                db.ForumMemberExps.Remove(exp);
+            }
+
+            // Remove the ForumMember
+            db.ForumMembers.Remove(forumMember);
+
+            // Save changes to the database
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
 
 

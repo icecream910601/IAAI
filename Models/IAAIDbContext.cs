@@ -45,6 +45,8 @@ namespace IAAI.Models
         public virtual DbSet<ForumReply> ForumReplies { get; set; }
 
 
+       
+
 
     }
 

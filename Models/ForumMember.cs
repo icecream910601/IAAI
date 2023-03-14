@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using Newtonsoft.Json;
 
@@ -125,6 +128,43 @@ namespace IAAI.Models
         public virtual ICollection<Forum> Forums { get; set; } //virtual 虛擬的 //一個類別裡面有很多個消息
         [JsonIgnore]
         public virtual ICollection<ForumReply> ForumReplys { get; set; } //virtual 虛擬的 //一個類別裡面有很多個消息
+
+
+        public static string SaveUpImage(HttpPostedFileBase Picture)
+        {
+            if (Picture == null)
+            {
+                return null;
+            }
+            else
+            {
+                var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + Picture.FileName;
+                var filePath = Path.Combine("~/Picture", fileName);
+                var path = HttpContext.Current.Server.MapPath(filePath);
+
+                Picture.SaveAs(path);
+
+                return fileName;
+            }
+        }
+
+        public void HashPassword()
+        {
+            using (var md5 = MD5.Create())
+            {
+                var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(Password));
+                Password = Convert.ToBase64String(hash);
+            }
+        }
+
+        public void HashConfirmedPassword()
+        {
+            using (var md5 = MD5.Create())
+            {
+                var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(ConfirmedPassword));
+                ConfirmedPassword = Convert.ToBase64String(hash);
+            }
+        }
 
 
 
