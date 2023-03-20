@@ -1,0 +1,226 @@
+﻿@using IAAI.Models
+@model IAAI.Models.ForumMember
+
+
+@{
+    List<ForumMemberExp> forumMemberExp = ViewBag.MemberExp;
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>刪除討論區會員</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ForumMember</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ConfirmedPassword)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ConfirmedPassword)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MembershipType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MembershipType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCurrentMember)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCurrentMember)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Copy)
+        </dt>
+
+        @*<dd>
+                @Html.DisplayFor(model => model.Copy)
+            </dd>*@
+        <dd>
+            @if (Model.Copy != null)
+            {
+                <img src="@Url.Content("~/Picture/" + Model.Copy)" alt="Certified Member Picture" style="width: 100px; height: 100px;" />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education)
+        </dd>
+
+        @*灰色區域*@
+        @foreach (var exp in forumMemberExp)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => exp.HistoryUnit)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.HistoryUnit)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.HistoryJobTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.HistoryJobTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.StartYear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.StartYear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.StartMonth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.StartMonth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.EndYear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.EndYear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => exp.EndMonth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => exp.EndMonth)
+            </dd>
+        }
+
+
+
+    </dl>
+    @using (Html.BeginForm("Delete", "ForumMembers", new { forumMemberId = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+

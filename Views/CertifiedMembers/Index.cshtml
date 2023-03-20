@@ -1,0 +1,65 @@
+﻿@using System.Text
+@model List<IAAI.Models.CertifiedMember>
+
+
+@{
+    ViewBag.RightTitle = "配證會員";
+    ViewBag.SideTitle = "關於我們";
+    ViewBag.MenuItemCount = 5;
+
+    ViewBag.MenuItem0Name = "關於我們";
+    ViewBag.MenuItem0Url = Url.Action("Index", "AboutUs");
+
+    ViewBag.MenuItem1Name = "組織架構";
+    ViewBag.MenuItem1Url = Url.Action("Index", "Organization");
+
+    ViewBag.MenuItem2Name = "沿革";
+    ViewBag.MenuItem2Url = Url.Action("Index", "History");
+
+    ViewBag.MenuItem3Name = "配證會員";
+    ViewBag.MenuItem3Url = Url.Action("Index", "CertifiedMembers");
+
+    ViewBag.MenuItem4Name = "專家介紹";
+    ViewBag.MenuItem4Url = Url.Action("Index", "Masters");
+
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+
+}
+
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:700px;">
+    <thead>
+        <tr>
+            <th scope="col" style="border-color: rgb(204, 0, 0); background-color: rgb(204, 0, 0);"><span style="color:#FFFFFF;">Picture</span></th>
+            <th scope="col" style="border-color: rgb(204, 0, 0); background-color: rgb(204, 0, 0);"><span style="color:#FFFFFF;">First name</span></th>
+            <th scope="col" style="border-color: rgb(204, 0, 0); background-color: rgb(204, 0, 0);"><span style="color:#FFFFFF;">Last name</span></th>
+            <th scope="col" style="border-color: rgb(204, 0, 0); background-color: rgb(204, 0, 0);"><span style="color:#FFFFFF;">country</span></th>
+            <th scope="col" style="border-color: rgb(204, 0, 0); background-color: rgb(204, 0, 0);"><span style="color:#FFFFFF;">Title</span></th>
+            <th scope="col" style="border-color: rgb(204, 0, 0); background-color: rgb(204, 0, 0);"><span style="color:#FFFFFF;">Company</span></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td style="text-align: center; border-color: rgb(204, 0, 0);">
+
+                    @if (item.Picture != null)
+                    {
+                        <img src="@Url.Content("~/Picture/" + item.Picture)" style="width: 200px; height: 200px;" />
+                    }
+
+                </td>
+                <td style="text-align: center; border-color: rgb(204, 0, 0);">@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td style="text-align: center; border-color: rgb(204, 0, 0);">@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td style="text-align: center; border-color: rgb(204, 0, 0);">@Html.DisplayFor(modelItem => item.Country)</td>
+                <td style="text-align: center; border-color: rgb(204, 0, 0);">@Html.DisplayFor(modelItem => item.Title)</td>
+                <td style="text-align: center; border-color: rgb(204, 0, 0);">@Html.DisplayFor(modelItem => item.Company)</td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>

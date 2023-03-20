@@ -1,0 +1,58 @@
+﻿@model IEnumerable<IAAI.Models.History>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<h2>沿革</h2>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kendo Editor Test</title>
+    <link rel="stylesheet"
+          href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.common.min.css" />
+    <link rel="stylesheet"
+          href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.default.min.css" />
+    <script src="//kendo.cdn.telerik.com/2016.2.714/js/jquery.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+
+<div>
+    @using (Html.BeginForm("Index", "History"))
+    {
+        <textarea id="editor" style="width: 100%; height: 500px;">
+            @ViewBag.History
+        </textarea>
+        <input type="hidden" id="content" name="Historyy" />
+        <button id="submit" type="submit">Submit</button>
+    }
+</div>
+
+<script>
+        $("#editor").kendoEditor({
+            tools: [
+                "formatting",
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "foreColor",
+                "backColor",
+                "insertImage",
+
+            ]
+        });
+        var editor = $("#editor").data("kendoEditor");
+        $("#submit").click(function () {
+            $("#content").val(editor.value());
+        });
+    </script>
+</body>
+</html>

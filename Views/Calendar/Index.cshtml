@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.RightTitle = "行事曆";
+    ViewBag.SideTitle = "行事曆";
+
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "協會行事曆";
+    ViewBag.MenuItem0Url = Url.Action("Index", "Calendar");
+
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+}
+
+<!-- 內容開始 -->
+
+			        
+<iframe src="https://calendar.google.com/calendar/embed?src=icecream9106011%40gmail.com&ctz=Asia%2FTaipei" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+
+<!-- Content row 1 end -->
+
+<!-- 內容結束 -->
+
+
+@*<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+</head>
+<body>
+<div id='calendar'></div>
+</body>
+</html>*@

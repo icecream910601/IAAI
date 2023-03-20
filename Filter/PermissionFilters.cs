@@ -34,14 +34,16 @@ namespace IAAI.Filter
                 string permit = member.Permission;
 
 
+            filterContext.Controller.ViewBag.name = member.Name.ToString();
+
                 //判斷Controller是否有權限設定
                 //bool hasPermission = db.Permissions.Any(p => p.Controller == filterContext.ActionDescriptor.ControllerDescriptor.ControllerName && permit.Contains(p.Controller.ToString()));
 
 
-                //todo:遞迴組字串
-                //跑遞迴 組成ul li 的結構
+            //todo:遞迴組字串
+            //跑遞迴 組成ul li 的結構
 
-                StringBuilder sbMenu = new StringBuilder();
+            StringBuilder sbMenu = new StringBuilder();
 
                 List<Permission> permissions = db.Permissions.ToList(); //將資料放到記憶體 //將物件轉成要的東西
                 var roots = permissions.Where(x => x.ParentId == null); //1.找跟節點

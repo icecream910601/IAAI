@@ -62,7 +62,7 @@
 
 <body>
 
-    <div class="body-inner" >
+    <section class="body-inner">
 
         <!-- Header start -->
         <header id="header" class="header-solid">
@@ -118,26 +118,26 @@
 
                                 <ul class="nav navbar-nav">
                                     <li class="dropdown active">
-                                        <a href="@Url.Action("Index", "F_AboutUs")" class="dropdown-toggle" data-toggle="dropdown" title="關於我們">關於我們 @*<i class="fa fa-angle-down"></i>*@</a>
+                                        <a href="@Url.Action("Index", "AboutUs")" class="dropdown-toggle" data-toggle="dropdown" title="關於我們">關於我們 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li class="active"><a href="@Url.Action("Index", "F_AboutUs")">關於我們</a></li>
-                                            <li><a href="@Url.Action("Index", "F_Organization")">組織架構</a></li>
-                                            <li><a href="@Url.Action("Index", "F_History")">沿革</a></li>
-                                            <li><a href="@Url.Action("Index", "F_CertifiedMembers")">配證會員</a></li>
-                                            <li><a href="@Url.Action("Index", "F_Masters")">專家介紹</a></li>
+                                            <li class="active"><a href="@Url.Action("Index", "AboutUs")">關於我們</a></li>
+                                            <li><a href="@Url.Action("Index", "Organization")">組織架構</a></li>
+                                            <li><a href="@Url.Action("Index", "History")">沿革</a></li>
+                                            <li><a href="@Url.Action("Index", "CertifiedMembers")">配證會員</a></li>
+                                            <li><a href="@Url.Action("Index", "Masters")">專家介紹</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a href="@Url.Action("Index", "F_News")" class="dropdown-toggle" data-toggle="dropdown" title="訊息發佈">訊息發佈 @*<i class="fa fa-angle-down"></i>*@</a>
+                                        <a href="@Url.Action("Index", "News")" class="dropdown-toggle" data-toggle="dropdown" title="訊息發佈">訊息發佈 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="@Url.Action("Index", "F_News")">最新消息</a></li>
+                                            <li><a href="@Url.Action("Index", "News")">最新消息</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="會員專區">會員專區 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="@Url.Action("ForumLogin", "F_ForumMembers")">會員登入</a></li>
-                                            <li><a href="@Url.Action("Create", "F_ForumMembers")">會員註冊</a></li>
+                                            <li><a href="@Url.Action("ForumLogin", "ForumMembers")">會員登入</a></li>
+                                            <li><a href="@Url.Action("Create", "ForumMembers")">會員註冊</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
@@ -153,15 +153,15 @@
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="行事曆">行事曆 @*<i class="fa fa-angle-down"></i>*@</a>
+                                        <a href="@Url.Action("Index", "Calendar")" class="dropdown-toggle" data-toggle="dropdown" title="行事曆">行事曆 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">協會行事曆</a></li>
+                                            <li><a href="@Url.Action("Index", "Calendar")">協會行事曆</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a href="@Url.Action("Index", "F_Contact")" class="dropdown-toggle" data-toggle="dropdown" title="聯絡我們">聯絡我們 @*<i class="fa fa-angle-down"></i>*@</a>
+                                        <a href="@Url.Action("Index", "Contact")" class="dropdown-toggle" data-toggle="dropdown" title="聯絡我們">聯絡我們 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="@Url.Action("Index", "F_Contact")">聯絡我們</a></li>
+                                            <li><a href="@Url.Action("Index", "Contact")">聯絡我們</a></li>
                                         </ul>
                                     </li>
                                 </ul><!--/ Nav ul end -->
@@ -210,19 +210,19 @@
                             </div>-->
                         <!-- Categories end -->
                         @*@{
-                            var sb = new StringBuilder();
+                                var sb = new StringBuilder();
 
-                            sb.AppendLine("<div class=\"sidebar sidebar-right\">");
-                            sb.AppendLine("<div class=\"widget\">");
-                            sb.AppendLine($"<h2 class=\"widget-title\"><i class=\"fa fa-folder-open-o\">&nbsp;</i>{ViewBag.SideTitle}</h2>");
-                            sb.AppendLine("<ul class=\"arrow nav nav-tabs nav-stacked\">");
-                            sb.AppendLine($"<li class=\"active\"><a href=\"#\">{ViewBag.Title}</a></li>");
-                            // Add more menu items here using sb.AppendLine()
-                            sb.AppendLine("</ul>");
-                            sb.AppendLine("</div><!-- Categories end -->");
+                                sb.AppendLine("<div class=\"sidebar sidebar-right\">");
+                                sb.AppendLine("<div class=\"widget\">");
+                                sb.AppendLine($"<h2 class=\"widget-title\"><i class=\"fa fa-folder-open-o\">&nbsp;</i>{ViewBag.SideTitle}</h2>");
+                                sb.AppendLine("<ul class=\"arrow nav nav-tabs nav-stacked\">");
+                                sb.AppendLine($"<li class=\"active\"><a href=\"#\">{ViewBag.Title}</a></li>");
+                                // Add more menu items here using sb.AppendLine()
+                                sb.AppendLine("</ul>");
+                                sb.AppendLine("</div><!-- Categories end -->");
 
-                            @Html.Raw(sb.ToString())
-                        }*@
+                                @Html.Raw(sb.ToString())
+                            }*@
 
                         @{
                             var menuItemCount = ViewBag.MenuItemCount ?? 0;
@@ -244,7 +244,7 @@
                                 //var itemName = $"ViewBag.MenuItem{i}Name";
                                 //var itemUrl = $"ViewBag.MenuItem{i}Url";
 
-                               var itemName = ViewData[$"MenuItem{i}Name"];
+                                var itemName = ViewData[$"MenuItem{i}Name"];
                                 var itemUrl = ViewData[$"MenuItem{i}Url"];
 
                                 sb.AppendLine($"<li><a href=\"{itemUrl}\">{itemName}</a></li>");
@@ -319,8 +319,9 @@
 
             </div><!-- Main row end -->
 
-    </div><!-- Conatiner end -->
-    </section><!-- Main container end -->
+
+        </section> <!-- Conatiner end -->
+    </section> <!-- Main container end -->
     <!-- Footer start -->
     <footer id="footer" class="footer">
         <div class="container">
@@ -344,14 +345,14 @@
             </div><!-- Copyright end -->
 
 
-            
+
             <div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
                 @*<button class="btn btn-primary" title="Back to Top">
-                    <i class="fa fa-angle-double-up"></i>
-                </button>*@
+                        <i class="fa fa-angle-double-up"></i>
+                    </button>*@
                 <button class="btn btn-primary" title="Back to Top">
                     <a href="#header"><i class="fa fa-angle-double-up"></i></a>
-                    
+
                 </button>
             </div>
 
@@ -382,7 +383,7 @@
     <!-- Template custom -->
     <script type="text/javascript" src="~/front/js/custom.js"></script>
 
-    </div><!-- Body inner end -->
+    <!--</div>--><!-- Body inner end -->
 
 
     @RenderSection("scripts", required: false)

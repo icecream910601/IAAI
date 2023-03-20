@@ -1,0 +1,63 @@
+﻿@model IAAI.Models.ViewForumMemberLogin
+
+
+@{
+
+    ViewBag.RightTitle = "會員登入";
+    ViewBag.SideTitle = "會員專區";
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "會員登入";
+    ViewBag.MenuItem0Url = Url.Action("ForumLogin", "ForumMembers");
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+}
+
+<p>@ViewBag.message</p>
+
+@*<h2>討論區會員登入</h2>*@
+
+
+
+@using (Html.BeginForm("ForumLogin", "ForumMembers", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    @*<form action="/F_ForumMember/ForumLogin" class="form-horizontal" method="post">
+        <input name="__RequestVerificationToken" type="hidden" value="guTdDT0AGjlmez3aiHLWZ-nb5TmLJ8YMwahVfHFpJAn_u6MEdkhbYE6WUv4xi5Da0Toh6MmD3_vR4piAXyC31BOakM1zMKIPctqnwbDAMMs1">*@
+
+    <h3 class="title-normal">請輸入您的帳號及密碼</h3>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">帳 號：</label>
+        @*@Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-sm-8">
+            @*<input class="form-control" placeholder="請輸入帳號" name="Account">*@
+            @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">密 碼：</label>
+        @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-sm-8">
+            @*<input class="form-control" placeholder="請輸入密碼" name="Password" type="password">*@
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            @*<button class="btn btn-primary solid blank" type="submit">登 入</button>*@
+            <input type="submit" value="登 入" class="btn btn-primary solid blank" />
+        </div>
+    </div>
+    <hr>
+    <div class="text-left">
+        <a href="/ForumMembers/Create">尚未註冊</a>
+    </div>
+    @*</form>*@
+}

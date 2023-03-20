@@ -1,0 +1,98 @@
+﻿@using IAAI.Models
+@model IAAI.Models.Forum
+
+@{
+    List<ForumReply> replyList = ViewBag.ReplyList;
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Forum</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumMember.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumMember.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Header)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Header)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Main)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Main)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InitDate)
+        </dd>
+
+        <br>
+        <dd>留言區</dd>
+        <br>
+
+        @*留言區域*@
+        @foreach (var reply in replyList)
+        {
+            @*<dt>
+                    @Html.DisplayNameFor(model => reply.Header)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => reply.Header)
+                </dd>*@
+
+            <dt>
+                @Html.DisplayNameFor(model => reply.ForumMember.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => reply.ForumMember.Name)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => reply.Main)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => reply.Main)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => reply.InitDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => reply.InitDate)
+            </dd>
+
+            <br>
+        }
+
+
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

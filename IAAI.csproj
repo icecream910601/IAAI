@@ -143,24 +143,28 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\B_AboutUsController.cs" />
-    <Compile Include="Controllers\B_CertifiedMembersController.cs" />
-    <Compile Include="Controllers\B_HistoriesController.cs" />
-    <Compile Include="Controllers\B_MastersController.cs" />
-    <Compile Include="Controllers\B_News2Controller.cs" />
-    <Compile Include="Controllers\B_NewsCatalogsController.cs" />
-    <Compile Include="Controllers\F_AboutUsController.cs" />
-    <Compile Include="Controllers\F_CertifiedMembersController.cs" />
-    <Compile Include="Controllers\F_ContactController.cs" />
-    <Compile Include="Controllers\F_ForumController.cs" />
-    <Compile Include="Controllers\F_ForumMembersController.cs" />
-    <Compile Include="Controllers\F_HistoryController.cs" />
-    <Compile Include="Controllers\F_MastersController.cs" />
-    <Compile Include="Controllers\F_OrganizationController.cs" />
+    <Compile Include="Areas\Manager\Controllers\AboutUsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\CertifiedMembersController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ForumController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ForumMembersController.cs" />
+    <Compile Include="Areas\Manager\Controllers\HistoryController.cs" />
+    <Compile Include="Areas\Manager\Controllers\MastersController.cs" />
+    <Compile Include="Areas\Manager\Controllers\MembersController.cs" />
+    <Compile Include="Areas\Manager\Controllers\NewsCatalogsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\OrganizationController.cs" />
+    <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\CertifiedMembersController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\ForumMembersController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
+    <Compile Include="Controllers\MastersController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\B_MembersController.cs" />
-    <Compile Include="Controllers\B_OrganizationsController.cs" />
-    <Compile Include="Controllers\F_NewsController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Filter\PagePermission.cs" />
     <Compile Include="Filter\PermissionFilters.cs" />
     <Compile Include="Global.asax.cs">
@@ -225,6 +229,10 @@
     <Compile Include="Migrations\202303060746275_addForumAndReplyTable.cs" />
     <Compile Include="Migrations\202303060746275_addForumAndReplyTable.Designer.cs">
       <DependentUpon>202303060746275_addForumAndReplyTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303141715359_fixForumMemberExpTable.cs" />
+    <Compile Include="Migrations\202303141715359_fixForumMemberExpTable.Designer.cs">
+      <DependentUpon>202303141715359_fixForumMemberExpTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutUs.cs" />
@@ -500,6 +508,44 @@
     <Content Include="assetslogin\fonts\fontawesome\webfonts\fa-solid-900.ttf" />
     <Content Include="assetslogin\fonts\fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="assetslogin\fonts\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Manager\Views\AboutUs\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\CertifiedMembers\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\CertifiedMembers\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\CertifiedMembers\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\CertifiedMembers\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\CertifiedMembers\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Forum\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Forum\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Forum\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Forum\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\ForumMembers\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\ForumMembers\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\ForumMembers\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\ForumMembers\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\History\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Masters\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Masters\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Masters\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Masters\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Masters\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Members\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Members\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Members\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Members\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Members\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Members\Login.cshtml" />
+    <Content Include="Areas\Manager\Views\News\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\News\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\News\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\News\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\NewsCatalogs\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\NewsCatalogs\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\NewsCatalogs\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\NewsCatalogs\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\NewsCatalogs\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Organization\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -525,63 +571,36 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\B_Members\Create.cshtml" />
-    <Content Include="Views\B_Members\Delete.cshtml" />
-    <Content Include="Views\B_Members\Details.cshtml" />
-    <Content Include="Views\B_Members\Edit.cshtml" />
-    <Content Include="Views\B_Members\Index.cshtml" />
-    <Content Include="Views\B_AboutUs\Index.cshtml" />
-    <Content Include="Views\B_AboutUs\Result.cshtml" />
-    <Content Include="Views\B_CertifiedMembers\Create.cshtml" />
-    <Content Include="Views\B_CertifiedMembers\Delete.cshtml" />
-    <Content Include="Views\B_CertifiedMembers\Details.cshtml" />
-    <Content Include="Views\B_CertifiedMembers\Edit.cshtml" />
-    <Content Include="Views\B_CertifiedMembers\Index.cshtml" />
-    <Content Include="Views\B_Members\Login.cshtml" />
-    <Content Include="Views\B_Organizations\Index.cshtml" />
-    <Content Include="Views\B_Histories\Index.cshtml" />
-    <Content Include="Views\B_NewsCatalogs\Create.cshtml" />
-    <Content Include="Views\B_NewsCatalogs\Delete.cshtml" />
-    <Content Include="Views\B_NewsCatalogs\Details.cshtml" />
-    <Content Include="Views\B_NewsCatalogs\Edit.cshtml" />
-    <Content Include="Views\B_NewsCatalogs\Index.cshtml" />
-    <Content Include="Views\B_News2\Create.cshtml" />
-    <Content Include="Views\B_News2\Delete.cshtml" />
-    <Content Include="Views\B_News2\Details.cshtml" />
-    <Content Include="Views\B_News2\Edit.cshtml" />
-    <Content Include="Views\B_News2\Index.cshtml" />
     <Content Include="Views\Shared\FrontLayout.cshtml">
       <BrowseToURL>~/Shared/FrontLayout</BrowseToURL>
     </Content>
-    <Content Include="Views\F_News\Index.cshtml" />
-    <Content Include="Views\F_News\Details.cshtml" />
-    <Content Include="Views\F_AboutUs\Index.cshtml" />
-    <Content Include="Views\F_History\Index.cshtml" />
-    <Content Include="Views\F_Organization\Index.cshtml" />
-    <Content Include="Views\F_CertifiedMembers\Index.cshtml" />
-    <Content Include="Views\F_Contact\Index.cshtml" />
-    <Content Include="Views\B_Masters\Create.cshtml" />
-    <Content Include="Views\B_Masters\Delete.cshtml" />
-    <Content Include="Views\B_Masters\Details.cshtml" />
-    <Content Include="Views\B_Masters\Edit.cshtml" />
-    <Content Include="Views\B_Masters\Index.cshtml" />
-    <Content Include="Views\F_Masters\Index.cshtml" />
-    <Content Include="Views\F_Masters\Details.cshtml" />
-    <Content Include="Views\F_ForumMembers\Create.cshtml" />
-    <Content Include="Views\F_ForumMembers\Delete.cshtml" />
-    <Content Include="Views\F_ForumMembers\Details.cshtml" />
-    <Content Include="Views\F_ForumMembers\Edit.cshtml" />
-    <Content Include="Views\F_ForumMembers\Index.cshtml" />
-    <Content Include="Views\F_ForumMembers\ForumLogin.cshtml" />
-    <Content Include="Views\F_Forum\Create.cshtml" />
-    <Content Include="Views\F_Forum\Delete.cshtml" />
-    <Content Include="Views\F_Forum\Details.cshtml" />
-    <Content Include="Views\F_Forum\Edit.cshtml" />
-    <Content Include="Views\F_Forum\Index.cshtml" />
-    <Content Include="Views\F_Forum\Reply.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\AboutUs\Index.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\CertifiedMembers\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Masters\Index.cshtml" />
+    <Content Include="Views\Masters\Details.cshtml" />
+    <Content Include="Views\ForumMembers\Create.cshtml" />
+    <Content Include="Views\ForumMembers\Delete.cshtml" />
+    <Content Include="Views\ForumMembers\Details.cshtml" />
+    <Content Include="Views\ForumMembers\Edit.cshtml" />
+    <Content Include="Views\ForumMembers\Index.cshtml" />
+    <Content Include="Views\ForumMembers\ForumLogin.cshtml" />
+    <Content Include="Views\Forum\Create.cshtml" />
+    <Content Include="Views\Forum\Delete.cshtml" />
+    <Content Include="Views\Forum\Details.cshtml" />
+    <Content Include="Views\Forum\Edit.cshtml" />
+    <Content Include="Views\Forum\Index.cshtml" />
+    <Content Include="Views\Forum\Reply.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Manager\Data\" />
+    <Folder Include="Areas\Manager\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -641,6 +660,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303060746275_addForumAndReplyTable.resx">
       <DependentUpon>202303060746275_addForumAndReplyTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303141715359_fixForumMemberExpTable.resx">
+      <DependentUpon>202303141715359_fixForumMemberExpTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

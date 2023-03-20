@@ -27,19 +27,19 @@ namespace IAAI.Models
 
         [RegularExpression(@"^(19|20)\d{2}$", ErrorMessage = "請輸入有效的年份")]
         [Display(Name = "起年")]
-        public int StartYear { get; set; }
+        public int? StartYear { get; set; }
 
         [Range(1, 12, ErrorMessage = "月份必須介於 1 到 12 之間。")]
         [Display(Name = "起月")]
-        public int StartMonth { get; set; }
+        public int? StartMonth { get; set; }
 
         [RegularExpression(@"^(19|20)\d{2}$", ErrorMessage = "請輸入有效的年份")]
         [Display(Name = "迄年")]
-        public int EndYear { get; set; }
+        public int? EndYear { get; set; }
 
         [Range(1, 12, ErrorMessage = "月份必須介於 1 到 12 之間。")]
         [Display(Name = "迄月")]
-        public int EndMonth { get; set; }
+        public int? EndMonth { get; set; }
 
 
 

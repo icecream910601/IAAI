@@ -1,0 +1,97 @@
+﻿@model IEnumerable<IAAI.Models.Master>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>專家列表</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>*@
+        <th>
+            Picture
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PresentJob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Education)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Experience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>編輯</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Picture)
+                </td>*@
+            <td>
+                @if (item.Picture != null)
+                {
+                    <img src="@Url.Content("~/Picture/" + item.Picture)" alt="Certified Member Picture" style="width: 100px; height: 100px;" />
+                }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PresentJob)
+            </td>
+
+            <td style="max-width: 200px;">
+                @Html.Raw((item.Education ?? string.Empty).Length > 10 ? (item.Education ?? string.Empty).Substring(0, 10) + "..." : (item.Education ?? string.Empty))
+            </td>
+
+            <td style="max-width: 200px;">
+                @Html.Raw((item.Introduction ?? string.Empty).Length > 10 ? (item.Introduction ?? string.Empty).Substring(0, 10) + "..." : (item.Introduction ?? string.Empty))
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Experience)
+                </td*@>
+            <td style="max-width: 200px;">
+                @Html.Raw((item.Experience ?? string.Empty).Length > 10 ? (item.Experience ?? string.Empty).Substring(0, 10) + "..." : (item.Experience ?? string.Empty))
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>*@
+
+            <td style="max-width: 200px;">
+                @Html.Encode((item.Description ?? string.Empty).Length > 10 ? (item.Description ?? string.Empty).Substring(0, 10) + "..." : (item.Description ?? string.Empty))
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

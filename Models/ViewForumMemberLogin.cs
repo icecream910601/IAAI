@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace IAAI.Models
@@ -24,6 +26,17 @@ namespace IAAI.Models
 
 
         public string Password { get; set; }
+
+
+        public void HashPassword()
+        {
+            using (var md5 = MD5.Create())
+            {
+                var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(Password));
+                Password = Convert.ToBase64String(hash);
+            }
+        }
+
         //public string ConfirmedPassword { get; set; }
         //public string Name { get; set; }
         //public Gender Gender { get; set; }

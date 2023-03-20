@@ -1,0 +1,67 @@
+﻿
+@using IAAI.Models
+@model MvcPaging.IPagedList<IAAI.Models.News>
+
+@{
+    ViewBag.RightTitle = "最新消息";
+    ViewBag.SideTitle = "訊息發布";
+
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "訊息發布";
+    ViewBag.MenuItem0Url = Url.Action("Index", "News"); 
+
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+    List<News> listNews = ViewBag.listNews;
+}
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="post">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="post-media post-image">
+                    <a href="/F_News/Details/@item.Id">
+                        @if (item.Picture != null)
+                        {
+                            <img src="@Url.Content("~/Picture/" + item.Picture)" alt="Certified Member Picture" class="img-responsive" />
+                        }
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="post-body">
+                    <div class="entry-header">
+                        <span class="post-meta-date"><i class="fa fa fa-clock-o"></i>  @Html.DisplayFor(modelItem => item.StartDate)</span>
+                        <h3 class="entry-title">
+                            <a href="/F_News/Details/@item.Id"> @Html.DisplayFor(modelItem => item.Subject)</a>
+                        </h3>
+                        <p><em> @Html.Raw((item.Content ?? string.Empty).Length > 20 ? (item.Content ?? string.Empty).Substring(0, 20) + "..." : (item.Content ?? string.Empty))</em></p>
+
+                    </div>
+
+                    <!-- header end -->
+                    @*<div class="post-footer">
+                            <a href="/news/Details/29" class="btn btn-primary">more</a>
+                        </div>*@
+                    <div class="post-footer">
+                        @*<a href="/news/Details/@item.Id" class="btn btn-primary">more</a>
+                            @Html.ActionLink("Details", "Details", new { id = item.Id })*@
+                        @Html.ActionLink("More", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    </div>
+
+
+
+                </div>
+                <!-- post-body end -->
+            </div>
+        </div>
+    </div>
+}
+
+<div class="pager">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>

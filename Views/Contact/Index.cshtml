@@ -1,0 +1,157 @@
+﻿@*@using BotDetect.Web.Mvc*@
+
+
+@{
+    ViewBag.RightTitle = "聯絡我們";
+    ViewBag.SideTitle = "聯絡我們";
+
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "聯絡我們";
+    ViewBag.MenuItem0Url = Url.Action("Index", "Contact");
+
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+
+}
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert('@ViewBag.Message');
+    </script>
+}
+
+
+@*@{
+        var errorMessage = TempData["ErrorMessage"] as string;
+        var name = TempData["Name"] as string;
+        var gender = TempData["Gender"] as string;
+        var tel = TempData["Tel"] as string;
+        var email = TempData["Email"] as string;
+        var subject = TempData["Subject"] as string;
+        var article = TempData["Article"] as string;
+    }
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">@Html.Raw(errorMessage)</div>
+    }*@
+
+
+
+@using (Html.BeginForm("Submit", "F_Contact", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    @*<form action="/Contact" class="form-horizontal" method="post" novalidate="novalidate">
+        <input name="__RequestVerificationToken" type="hidden" value="n0udAbY6sR3LqUTKD6L79shWt_pJPh39rP1qTzQIF1lQpcu6npkBhQ5kQBYOfr1_CfHs_tLLJ0g58v1H6UluHAdr8WPJPtYUudaKVZjszcQ1">*@
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">姓 名：</label>
+        <div class="col-sm-7">
+            <input class="form-control" data-val="true" data-val-required="姓名必填" id="Name" name="Name" placeholder="請輸入姓名" type="text" value="">
+        </div>
+        <div class="col-sm-3">
+            <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">性 別：</label>
+        <div class="col-sm-7">
+            <select data-val="true" data-val-required="The 性別 field is required." id="Gender" name="Gender">
+                <option>男</option>
+                <option>女</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <span class="field-validation-valid" data-valmsg-for="Gender" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">聯絡電話：</label>
+        <div class="col-sm-7">
+            <input class="form-control" data-val="true" data-val-required="聯絡電話必填" id="Tel" name="Tel" placeholder="請輸入聯絡電話" type="text" value="">
+
+        </div>
+        <div class="col-sm-3">
+            <span class="field-validation-valid" data-valmsg-for="Tel" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">E-mail：</label>
+        <div class="col-sm-7">
+            @*<input class="form-control" data-val="true" data-val-email="E-Mail 格式錯誤" data-val-required="E-Mail必填" id="Email" name="Email" placeholder="請輸入E-Mail" type="text" value="">*@
+            <input class="form-control" data-val="true" data-val-email="E-Mail 格式錯誤" data-val-required="E-Mail必填" id="Email" name="Email" placeholder="請輸入E-Mail" type="email" value="">
+            
+        </div>
+        <div class="col-sm-3">
+            <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">詢問標題：</label>
+        <div class="col-sm-7">
+            <input class="form-control" data-val="true" data-val-required="名稱必填" id="Subject" name="Subject" placeholder="請輸入名稱" type="text" value="">
+
+        </div>
+        <div class="col-sm-3">
+            <span class="field-validation-valid" data-valmsg-for="Subject" data-valmsg-replace="true"></span>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">詢問內容：</label>
+        <div class="col-sm-10">
+            <textarea class="form-control form-control-message" cols="20" id="Article" name="Article" placeholder="請輸入內容" rows="2" style="height: 150px"></textarea>
+
+            <span class="field-validation-valid" data-valmsg-for="Article" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+            <div class="col-sm-6">
+                <label class="control-label">驗證碼：</label>
+                @{
+                    MvcCaptcha validbox = new MvcCaptcha("validatedigit"); //需跟controller設定一致
+                    validbox.CodeLength = 4; //幾個字元
+                    validbox.ImageSize = new System.Drawing.Size(120, 40); //調整寬高
+                    validbox.SoundEnabled = false; //不顯示聲音辨識 此完整功能需付費 否則有一半機率你聽到的都是voice demo
+                    validbox.UseSmallIcons = false; //不使用小的icon 言下之意就是正常版icon
+                }
+                @Html.TextBox("CaptchaCode", null, new { placeholder = "請輸入驗證碼", required = "required" })
+            </div>
+            <div class="col-sm-6">
+                <div class="verify">
+                    @Html.Captcha(validbox)
+                </div>
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            <label class="col-sm-2 control-label">驗證碼：</label>
+            <div class="col-sm-3">
+
+                <input class="form-control" data-val="true" data-val-required="驗證碼必填" id="MvcCaptcha" name="MvcCaptcha" placeholder="請輸入驗證碼" type="text" value="">
+            </div>
+            <div class="col-sm-4">
+                <img alt="Are you a human being?" src="/MvcCaptcha/GetPicture/S1FKWklTZGpGZ0JWR0dFSlV5WVRIamcrZXdsN0RrNUlGd0VhT0E5a0pXSTNMUU1WY2gwMEQzNDNlaUpnTVFSYkcwUVpYUnBnS0ZvTUlnNUVCbFVxTWowaWRTcGZBRmdPU2dNYklHTWJBSHM3QUNnemZocG5Tdz09"><input id="MvcCaptchaHiddenInputId" name="MvcCaptchaHiddenInputId" type="hidden" value="S1FKWklTZGpGZ0JWR0dFSlV5WVRIamcrZXdsN0RrNUlGd0VhT0E5a0pXSTNMUU1WY2gwMEQzNDNlaUpnTVFSYkcwUVpYUnBnS0ZvTUlnNUVCbFVxTWowaWRTcGZBRmdPU2dNYklHTWJBSHM3QUNnemZocG5Tdz09">
+
+            </div>
+            <div class="col-sm-3">
+                <span class="field-validation-valid" data-valmsg-for="MvcCaptcha" data-valmsg-replace="true"></span>
+            </div>
+        </div>*@
+    <hr>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-primary solid blank" type="submit">送 出</button>
+        </div>
+    </div>
+    @*</form>*@
+}
