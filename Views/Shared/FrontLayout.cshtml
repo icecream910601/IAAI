@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="~/front/css/owl.theme.css">
     <!-- Colorbox -->
     <link rel="stylesheet" href="~/front/css/colorbox.css">
+    
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
@@ -143,7 +144,10 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="協會業務">協會業務 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">協會業務</a></li>
+                                            <li><a href="@Url.Action("Index", "AssnBusiness")">協會業務</a></li>
+                                            <li><a href="@Url.Action("Index", "AssnLicenses")">訓練、認證、發照</a></li>
+                                            <li><a href="@Url.Action("Index", "AssnRefer")">諮詢、顧問</a></li>
+                                            <li><a href="@Url.Action("Index", "AssnSurvey")">縱火調查</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">

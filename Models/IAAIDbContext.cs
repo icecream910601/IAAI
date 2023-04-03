@@ -44,8 +44,10 @@ namespace IAAI.Models
         public System.Data.Entity.DbSet<IAAI.Models.Forum> Forum { get; set; }
         public virtual DbSet<ForumReply> ForumReplies { get; set; }
 
-
-       
+        public virtual DbSet<AssnBusiness> AssnBusinesses { get; set; }
+        public virtual DbSet<AssnLicenses> AssnLicenses{ get; set; }
+        public virtual DbSet<AssnRefer> AssnRefers { get; set; }
+        public virtual DbSet<AssnSurvey> AssnSurveys { get; set; }
 
 
     }

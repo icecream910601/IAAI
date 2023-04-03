@@ -14,9 +14,9 @@ using Newtonsoft.Json;
 
 namespace IAAI.Areas.Manager.Controllers
 {
-    [PagePermission]
-    [PermissionFilters]
-    [Authorize]
+    //[PagePermission]
+    //[PermissionFilters]
+    //[Authorize]
 
     public class MembersController : Controller
     {
@@ -63,7 +63,7 @@ namespace IAAI.Areas.Manager.Controllers
                 string Userdata = JsonConvert.SerializeObject(member);
                 Utility.SetAuthenTicket(Userdata, member.Account);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
 
             return View(viewLogin);

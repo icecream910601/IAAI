@@ -188,7 +188,7 @@ namespace IAAI.Areas.Manager.Controllers
             // Save changes to the database
             db.SaveChanges();
 
-            return RedirectToAction("Index", "B_ForumMember");
+            return RedirectToAction("Index", "ForumMembers");
         }
 
 

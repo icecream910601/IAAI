@@ -48,7 +48,8 @@ namespace IAAI.Controllers
             Session.Abandon();
 
             // 重新導向到登入頁面
-            return RedirectToAction("Login", "B_Members");
+            return RedirectToAction("Login", "Members", new { area = "Manager" });
+          
            
         }
     }

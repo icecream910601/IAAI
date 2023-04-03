@@ -84,7 +84,7 @@
                             </a>
                         </li>
                     </ul>-->
-                    <!-- /.dropdown-messages -->
+                <!-- /.dropdown-messages -->
                 <!--</li>-->
                 <!-- /.dropdown -->
                 <!--<li class="dropdown">
@@ -163,7 +163,7 @@
                             </a>
                         </li>
                     </ul>-->
-                    <!-- /.dropdown-tasks -->
+                <!-- /.dropdown-tasks -->
                 <!--</li>-->
                 <!-- /.dropdown -->
                 <!--<li class="dropdown">
@@ -223,9 +223,8 @@
                             </a>
                         </li>
                     </ul>-->
-                    <!-- /.dropdown-alerts -->
+                <!-- /.dropdown-alerts -->
                 <!--</li>-->
-
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -247,6 +246,7 @@
                                 <i class="fa fa-sign-out fa-fw"></i> Logout
                             </a>
                         </li>
+
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -275,19 +275,19 @@
                     <a href="#"><i class="fa fa-sitemap"></i> 關於我們<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="@Url.Action("Index", "B_AboutUs")">關於我們</a>
+                            <a href="@Url.Action("Index", "AboutUs")">關於我們</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "B_Organizations")">組織架構</a>
+                            <a href="@Url.Action("Index", "Organization")">組織架構</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "B_Histories")">沿革</a>
+                            <a href="@Url.Action("Index", "History")">沿革</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "B_CertifiedMembers")">配證會員</a>
+                            <a href="@Url.Action("Index", "CertifiedMembers")">配證會員</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "B_Masters")">專家介紹</a>
+                            <a href="@Url.Action("Index", "Masters")">專家介紹</a>
                         </li>
                     </ul>
                 </li>
@@ -297,10 +297,10 @@
                     <a href="#"><i class="fa fa-sitemap"></i> 最新消息<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="@Url.Action("Index", "B_NewsCatalogs")">消息類別</a>
+                            <a href="@Url.Action("Index", "NewsCatalogs")">消息類別</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "B_News2")">消息</a>
+                            <a href="@Url.Action("Index", "News")">消息</a>
                         </li>
 
                     </ul>
@@ -380,7 +380,7 @@ function logout() {
     success: function(data) {
       // 處理成功的回應，例如清除 Cookie 或是重新導向頁面
       document.cookie = "authentication=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.replace("@Url.Action("Login", "B_Members")");
+   window.location.replace("@Url.Action("Login", "Members", new { area = "Manager" })");
     },
     error: function(jqXHR, textStatus, errorThrown) {
       // 處理失敗的回應，例如顯示錯誤訊息

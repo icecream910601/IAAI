@@ -1,0 +1,27 @@
+﻿@using System.Text
+@model IAAI.Models.AssnLicenses
+
+@{
+    ViewBag.RightTitle = "訓練、認證、發照";
+    ViewBag.SideTitle = "協會業務";
+    ViewBag.MenuItemCount = 4;
+
+    ViewBag.MenuItem0Name = "協會業務";
+    ViewBag.MenuItem0Url = Url.Action("Index", "AssnBusiness");
+
+    ViewBag.MenuItem1Name = "訓練、認證、發照";
+    ViewBag.MenuItem1Url = Url.Action("Index", "AssnLicenses");
+
+    ViewBag.MenuItem2Name = "諮詢、顧問";
+    ViewBag.MenuItem2Url = Url.Action("Index", "AssnRefer"); ;
+
+    ViewBag.MenuItem3Name = "縱火調查";
+    ViewBag.MenuItem3Url = Url.Action("Index", "AssnSurvey");
+
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+}
+
+
+<div class="clearfix _2pi4">
+    @Html.Raw(Model.Licenses)
+</div>

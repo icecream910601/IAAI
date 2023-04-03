@@ -28,9 +28,13 @@ namespace IAAI.Filter
             //if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             //{
 
-                ////取得UserData
-                string strUserData = ((FormsIdentity)(HttpContext.Current.User.Identity)).Ticket.UserData;
-                Member member = JsonConvert.DeserializeObject<Member>(strUserData);
+           
+
+            ////取得UserData
+            string strUserData = ((FormsIdentity)(HttpContext.Current.User.Identity)).Ticket.UserData;
+
+            
+            Member member = JsonConvert.DeserializeObject<Member>(strUserData);
                 string permit = member.Permission;
 
 

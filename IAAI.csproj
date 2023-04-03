@@ -144,6 +144,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Manager\Controllers\AboutUsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\AssnBusinessController.cs" />
+    <Compile Include="Areas\Manager\Controllers\AssnLicensesController.cs" />
+    <Compile Include="Areas\Manager\Controllers\AssnReferController.cs" />
+    <Compile Include="Areas\Manager\Controllers\AssnSurveyController.cs" />
     <Compile Include="Areas\Manager\Controllers\CertifiedMembersController.cs" />
     <Compile Include="Areas\Manager\Controllers\ForumController.cs" />
     <Compile Include="Areas\Manager\Controllers\ForumMembersController.cs" />
@@ -155,6 +159,10 @@
     <Compile Include="Areas\Manager\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\AssnBusinessController.cs" />
+    <Compile Include="Controllers\AssnLicensesController.cs" />
+    <Compile Include="Controllers\AssnReferController.cs" />
+    <Compile Include="Controllers\AssnSurveyController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CertifiedMembersController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -234,8 +242,16 @@
     <Compile Include="Migrations\202303141715359_fixForumMemberExpTable.Designer.cs">
       <DependentUpon>202303141715359_fixForumMemberExpTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304010817177_addAssnTables.cs" />
+    <Compile Include="Migrations\202304010817177_addAssnTables.Designer.cs">
+      <DependentUpon>202304010817177_addAssnTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutUs.cs" />
+    <Compile Include="Models\AssnBusiness.cs" />
+    <Compile Include="Models\AssnLicenses.cs" />
+    <Compile Include="Models\AssnRefer.cs" />
+    <Compile Include="Models\AssnSurvey.cs" />
     <Compile Include="Models\CertifiedMember.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\ForumMember.cs" />
@@ -546,6 +562,10 @@
     <Content Include="Areas\Manager\Views\NewsCatalogs\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\NewsCatalogs\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Organization\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\AssnBusiness\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\AssnLicenses\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\AssnRefer\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\AssnSurvey\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -596,6 +616,10 @@
     <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Forum\Reply.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\AssnBusiness\Index.cshtml" />
+    <Content Include="Views\AssnLicenses\Index.cshtml" />
+    <Content Include="Views\AssnRefer\Index.cshtml" />
+    <Content Include="Views\AssnSurvey\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -663,6 +687,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303141715359_fixForumMemberExpTable.resx">
       <DependentUpon>202303141715359_fixForumMemberExpTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304010817177_addAssnTables.resx">
+      <DependentUpon>202304010817177_addAssnTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
