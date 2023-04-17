@@ -53,7 +53,7 @@ namespace IAAI.Areas.Manager.Controllers
             var jsonString = await response.Content.ReadAsStringAsync(); //
             var jsonData = JArray.Parse(jsonString);//
 
-            //下拉選單無法正常顯示 
+            //下拉選單顯示 
             List<SelectListItem> enNameList = new List<SelectListItem>();
             foreach (var countries in jsonData)
             {
@@ -83,7 +83,7 @@ namespace IAAI.Areas.Manager.Controllers
                         return View(certifiedMember);
                     }
 
-                    certifiedMember.Picture = CertifiedMember.SaveUpImage(Picture);
+                    certifiedMember.Picture = Utility.SaveUpImage(Picture);
                 }
 
                 db.Certified.Add(certifiedMember);
@@ -126,7 +126,7 @@ namespace IAAI.Areas.Manager.Controllers
                         return View(certifiedMember);
                     }
 
-                    certifiedMember.Picture = CertifiedMember.SaveUpImage(Picture);
+                    certifiedMember.Picture = Utility.SaveUpImage(Picture);
                 }
                 db.Entry(certifiedMember).State = EntityState.Modified;
                 db.SaveChanges();

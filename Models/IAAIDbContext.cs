@@ -49,6 +49,13 @@ namespace IAAI.Models
         public virtual DbSet<AssnRefer> AssnRefers { get; set; }
         public virtual DbSet<AssnSurvey> AssnSurveys { get; set; }
 
+        public virtual DbSet<Knowledge> Knowledges { get; set; }
+
+        public virtual DbSet<LandingPageLink> LandingPageLinks { get; set; }
+
+        public virtual DbSet<LandingPageContent> LandingPageContents { get; set; }
+
+        public virtual DbSet<LandingPageSlider> LandingPageSliders { get; set; }
 
     }
 

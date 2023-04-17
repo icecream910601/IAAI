@@ -1,0 +1,71 @@
+﻿
+@using HtmlAgilityPack
+@using IAAI.Models
+@model MvcPaging.IPagedList<IAAI.Models.Knowledge>
+
+@{
+    ViewBag.Title = "知識庫下載";
+    ViewBag.RightTitle = "知識庫下載";
+    ViewBag.SideTitle = "知識庫";
+
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "知識庫下載";
+    ViewBag.MenuItem0Url = Url.Action("Index", "Knowledges");
+
+    Layout = "~/Views/Shared/FrontLayout.cshtml";
+    List<Knowledge> listKnowledges = ViewBag.listKnowledges;
+}
+
+
+@foreach (var item in Model)
+{
+
+    <div class="post">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <span class="post-meta-date"><i class="fa fa fa-clock-o"></i>  @Html.DisplayFor(modelItem => item.InitDate)</span>
+                <div class="post-media post-image">
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="post-body">
+                    <div class="entry-header">
+
+                        <div class="post-media post-image">
+                            <a href="/Knowledges/Details/@item.Id">
+                                @if (item.Picture != null)
+                                {
+                                    <img src="@Url.Content("~/Picture/" + item.Picture)" alt="Knowledges Picture" class="img-responsive" />
+                                }
+                            </a>
+                        </div>
+
+                        <h3 class="entry-title">
+                            <a href="/Knowledges/Details/@item.Id"> @Html.DisplayFor(modelItem => item.Subject)</a>
+                        </h3>
+                        <p><em>  @{
+                                     var content = item.Content ?? string.Empty;
+                                     var doc = new HtmlDocument();
+                                     doc.LoadHtml(content);
+                                     var text = doc.DocumentNode.InnerText;
+                                     var truncatedText = text.Length > 20 ? text.Substring(0, 20) + "..." : text;
+                                 }</em></p>
+
+                    </div>
+                    <!-- header end -->
+
+                </div>
+                <!-- post-body end -->
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+<div class="pager">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>

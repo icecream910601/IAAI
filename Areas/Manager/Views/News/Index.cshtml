@@ -51,7 +51,7 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Content)
         </th>
-        <th></th>
+        <th>編輯</th>
     </tr>
 
     @foreach (var item in Model)
@@ -67,7 +67,7 @@
             <td>
                 @if (item.Picture != null)
                 {
-                    <img src="@Url.Content("~/Picture/" + item.Picture)" alt="Certified Member Picture" style="width: 100px; height: 100px;" />
+                    <img src="@Url.Content("~/Picture/" + item.Picture)" alt="News Picture" style="width: 100px; height: 100px;" />
                 }
             </td>
 

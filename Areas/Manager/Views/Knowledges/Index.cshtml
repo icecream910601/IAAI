@@ -1,0 +1,85 @@
+﻿@using IAAI.Models
+@using MvcPaging
+@model MvcPaging.IPagedList<IAAI.Models.Knowledge>
+@using HtmlAgilityPack;
+
+@{
+    ViewBag.Title = "Index";
+    List<Knowledge> listKnowledges = ViewBag.listKnowledges;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>知識庫列表</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().InitDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Picture)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Content)
+        </th>
+
+        <th>編輯</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InitDate)
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Picture)
+                </td>*@
+            <td>
+                @if (item.Picture != null)
+                {
+                    <img src="@Url.Content("~/Picture/" + item.Picture)" alt="Knowkledges Picture" style="width: 100px; height: 100px;" />
+                }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>*@
+            <td style="max-width: 200px;">
+                @{
+                    var content = item.Content ?? string.Empty;
+                    var doc = new HtmlDocument();
+                    doc.LoadHtml(content);
+                    var text = doc.DocumentNode.InnerText;
+                    var truncatedText = text.Length > 20 ? text.Substring(0, 20) + "..." : text;
+                }
+                @truncatedText
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="pager">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>

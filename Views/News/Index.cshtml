@@ -3,6 +3,7 @@
 @model MvcPaging.IPagedList<IAAI.Models.News>
 
 @{
+    ViewBag.Title = "最新消息";
     ViewBag.RightTitle = "最新消息";
     ViewBag.SideTitle = "訊息發布";
 
@@ -23,10 +24,10 @@
         <div class="row">
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="post-media post-image">
-                    <a href="/F_News/Details/@item.Id">
+                    <a href="/News/Details/@item.Id">
                         @if (item.Picture != null)
                         {
-                            <img src="@Url.Content("~/Picture/" + item.Picture)" alt="Certified Member Picture" class="img-responsive" />
+                            <img src="@Url.Content("~/Picture/" + item.Picture)" alt="News Picture" class="img-responsive" />
                         }
                     </a>
 
@@ -37,7 +38,7 @@
                     <div class="entry-header">
                         <span class="post-meta-date"><i class="fa fa fa-clock-o"></i>  @Html.DisplayFor(modelItem => item.StartDate)</span>
                         <h3 class="entry-title">
-                            <a href="/F_News/Details/@item.Id"> @Html.DisplayFor(modelItem => item.Subject)</a>
+                            <a href="/News/Details/@item.Id"> @Html.DisplayFor(modelItem => item.Subject)</a>
                         </h3>
                         <p><em> @Html.Raw((item.Content ?? string.Empty).Length > 20 ? (item.Content ?? string.Empty).Substring(0, 20) + "..." : (item.Content ?? string.Empty))</em></p>
 

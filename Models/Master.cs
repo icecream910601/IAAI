@@ -56,23 +56,23 @@ namespace IAAI.Models
         public string Description { get; set; }
 
 
-        public static string SaveUpImage(HttpPostedFileBase Picture)
-        {
-            if (Picture == null)
-            {
-                return null;
-            }
-            else
-            {
-                var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + Picture.FileName;
-                var filePath = Path.Combine("~/Picture", fileName);
-                var path = HttpContext.Current.Server.MapPath(filePath);
+        //public static string SaveUpImage(HttpPostedFileBase Picture)
+        //{
+        //    if (Picture == null)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + Picture.FileName;
+        //        var filePath = Path.Combine("~/Picture", fileName);
+        //        var path = HttpContext.Current.Server.MapPath(filePath);
 
-                Picture.SaveAs(path);
+        //        Picture.SaveAs(path);
 
-                return fileName;
-            }
-        }
+        //        return fileName;
+        //    }
+        //}
 
 
 

@@ -63,7 +63,7 @@ namespace IAAI.Areas.Manager.Controllers
                         return View(master);
                     }
 
-                    master.Picture = CertifiedMember.SaveUpImage(Picture);
+                    master.Picture = Utility.SaveUpImage(Picture);
                 }
 
 
@@ -114,7 +114,7 @@ namespace IAAI.Areas.Manager.Controllers
                         return View(master);
                     }
 
-                    master.Picture = CertifiedMember.SaveUpImage(Picture);
+                    master.Picture = Utility.SaveUpImage(Picture);
                 }
                 db.Entry(master).State = EntityState.Modified;
                 db.SaveChanges();

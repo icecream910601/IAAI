@@ -1,0 +1,68 @@
+﻿@model IEnumerable<IAAI.Models.LandingPageContent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>新增首頁中間圖片列表</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture4)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item.Picture1 != null)
+            {
+                <img src="@Url.Content("~/Picture/" + item.Picture1)" alt="Picture1" style="width:50%;"/>
+            }
+        </td>
+
+        <td>
+            @if (item.Picture2 != null)
+            {
+                <img src="@Url.Content("~/Picture/" + item.Picture2)" alt="Picture2" style="width:50%;" />
+            }
+        </td>
+
+        <td>
+            @if (item.Picture3 != null)
+            {
+                <img src="@Url.Content("~/Picture/" + item.Picture3)" alt="Picture3" style="width:50%;" />
+            }
+        </td>
+
+        <td>
+            @if (item.Picture4 != null)
+            {
+                <img src="@Url.Content("~/Picture/" + item.Picture4)" alt="Picture4" style="width:50%;" />
+            }
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

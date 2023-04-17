@@ -1,0 +1,76 @@
+﻿@model IAAI.Models.LandingPageLink
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>新增首頁下方連結輪播</h2>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>LandingPageLink</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.LinkPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LinkPicture, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LinkPicture, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.LinkPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="editor-field">
+                <input type="file" id="LinkPicture" name="LinkPicture" accept="image/gif, image/jpeg, image/png" />
+                <img id="preview" src="#" alt="Preview" style="display: none" width="200" /><br>
+                @Html.ValidationMessageFor(model => model.LinkPicture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+                $('#preview').show();
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $('#LinkPicture').change(function () {
+        previewImage(this);
+    });
+</script>

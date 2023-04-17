@@ -35,29 +35,28 @@ namespace IAAI.Models
 
 
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(1000)]
         [Display(Name = "內容")]
         public string Content { get; set; }
 
 
-        public static string SaveUpImage(HttpPostedFileBase Picture)
-        {
-            if (Picture == null)
-            {
-                return null;
-            }
-            else
-            {
-                var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + Picture.FileName;
-                var filePath = Path.Combine("~/Picture", fileName);
-                var path = HttpContext.Current.Server.MapPath(filePath);
+        //public static string SaveUpImage(HttpPostedFileBase Picture)
+        //{
+        //    if (Picture == null)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + Picture.FileName;
+        //        var filePath = Path.Combine("~/Picture", fileName);
+        //        var path = HttpContext.Current.Server.MapPath(filePath);
 
-                Picture.SaveAs(path);
+        //        Picture.SaveAs(path);
 
-                return fileName;
-            }
+        //        return fileName;
+        //    }
 
-        }
+        //}
 
 
         [Display(Name = "類別")]
@@ -66,6 +65,9 @@ namespace IAAI.Models
 
         [ForeignKey("ClassId")]  //綁關聯   //透過ClassId 查出MyCatalog
         public virtual NewsCatalog MyCatalog { get; set; }//希望可以直接操縱所屬類別  //虛擬的  //我必須知道我的所屬類別是誰
+
+
+
 
 
 

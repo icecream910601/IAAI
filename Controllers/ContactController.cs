@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using BotDetect.Web.Mvc;
+using Recaptcha.Web.Mvc;
 
 namespace IAAI.Controllers
 {
@@ -39,6 +40,20 @@ namespace IAAI.Controllers
             //    ModelState.AddModelError("MvcCaptcha", "驗證碼不正確");
             //}
 
+
+            // 驗證 Recaptcha
+            var recaptchaHelper = this.GetRecaptchaVerificationHelper();
+            if (string.IsNullOrEmpty(recaptchaHelper.Response))
+            {
+                ModelState.AddModelError("", "請輸入驗證碼。");
+                return View("Index");
+            }
+            var recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+            if (!recaptchaResult.Success)
+            {
+                ModelState.AddModelError("", "驗證碼不正確。");
+                return View("Index");
+            }
 
 
             string fromEmail = ConfigurationManager.AppSettings["FromEmail"];

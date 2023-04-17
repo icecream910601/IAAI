@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -80,7 +81,25 @@ namespace IAAI.Models
         }
         #endregion
 
-       
+        public static string SaveUpImage(HttpPostedFileBase Picture)
+        {
+            if (Picture == null)
+            {
+                return null;
+            }
+            else
+            {
+                var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + Picture.FileName;
+                var filePath = Path.Combine("~/Picture", fileName);
+                var path = HttpContext.Current.Server.MapPath(filePath);
+
+                Picture.SaveAs(path);
+
+                return fileName;
+            }
+
+        }
+
 
 
     }

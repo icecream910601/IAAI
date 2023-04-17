@@ -1,0 +1,135 @@
+﻿@model IAAI.Models.Knowledge
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>新增知識庫</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Kendo Editor Test</title>
+        <link rel="stylesheet"
+              href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.common.min.css" />
+        <link rel="stylesheet"
+              href="//kendo.cdn.telerik.com/2016.2.714/styles/kendo.default.min.css" />
+        <script src="//kendo.cdn.telerik.com/2016.2.714/js/jquery.min.js"></script>
+        <script src="//kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script>
+    </head>
+
+
+
+    <div class="form-horizontal">
+        <h4>Knowledge</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+                @Html.LabelFor(model => model.InitDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.InitDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InitDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="editor-field">
+                <input type="file" name="Picture" />
+                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div>
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <textarea id="editor" style="width: 100%; height: 500px;">@ViewBag.Content</textarea>
+            <input type="hidden" id="content" name="Content" />
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="submit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+    $("#editor").kendoEditor({
+        tools: [
+            "formatting",
+            "insertImage",
+
+            "bold",
+            "italic",
+            "underline",
+            "strikethrough",
+            "foreColor",
+            "backColor",
+            {
+                name: "createLink",
+                tooltip: "Insert hyperlink",
+                exec: function (e) {
+                    var dialog = e.sender.createDialog("createLink").appendTo(document.body);
+                    dialog.find(".k-insert-button").click(function () {
+                        var link = kendo.htmlEncode(dialog.find("input[name='href']").val());
+                        var text = kendo.htmlEncode(dialog.find("input[name='text']").val());
+                        var title = kendo.htmlEncode(dialog.find("input[name='title']").val());
+                        var target = "_blank"; // open link in a new window
+                        var html = "<a href='" + link + "' title='" + title + "' target='" + target + "'>" + text + "</a>";
+                        e.sender.value(e.sender.value() + html);
+                        dialog.data("kendoWindow").close();
+                    });
+                    dialog.find(".k-cancel-button").click(function () {
+                        dialog.data("kendoWindow").close();
+                    });
+                    e.sender.selectRange(e.sender.getSelection());
+                    dialog.data("kendoWindow").center().open();
+                },
+                iconClass: "k-icon k-i-link"
+            }
+        ],
+        resizable: {
+            content: true,
+            toolbar: true
+        }
+    });
+    var editor = $("#editor").data("kendoEditor");
+    $("#submit").click(function () {
+        $("#content").val(editor.value());
+    });
+</script>

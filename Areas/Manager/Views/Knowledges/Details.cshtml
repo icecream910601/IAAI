@@ -1,0 +1,61 @@
+﻿@model IAAI.Models.Knowledge
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>知識庫詳細資料</h2>
+
+<div>
+    <h4>Knowledge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InitDate)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>*@
+        <dd>
+            @if (Model.Picture != null)
+            {
+                <img src="@Url.Content("~/Picture/" + Model.Picture)" alt="Knowledge Picture" style="width: 100px; height: 100px;" />
+            }
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>*@
+        <dd>
+            @*@Html.DisplayFor(model => model.Content)*@
+            @Html.Raw(Model.Content)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

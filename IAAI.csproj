@@ -60,9 +60,20 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.46.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MvcPaging, Version=2.1.13.46, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MvcPaging.2.1.13\lib\net40\MvcPaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Recaptcha.Web, Version=3.1.0.0, Culture=neutral, PublicKeyToken=c11b6c0ad947566e, processorArchitecture=MSIL">
+      <HintPath>packages\RecaptchaNet.3.1.0\lib\net45\Recaptcha.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -122,9 +133,6 @@
       <Private>True</Private>
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -152,6 +160,10 @@
     <Compile Include="Areas\Manager\Controllers\ForumController.cs" />
     <Compile Include="Areas\Manager\Controllers\ForumMembersController.cs" />
     <Compile Include="Areas\Manager\Controllers\HistoryController.cs" />
+    <Compile Include="Areas\Manager\Controllers\KnowledgesController.cs" />
+    <Compile Include="Areas\Manager\Controllers\LandingPageContentsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\LandingPageLinksController.cs" />
+    <Compile Include="Areas\Manager\Controllers\LandingPageSlidersController.cs" />
     <Compile Include="Areas\Manager\Controllers\MastersController.cs" />
     <Compile Include="Areas\Manager\Controllers\MembersController.cs" />
     <Compile Include="Areas\Manager\Controllers\NewsCatalogsController.cs" />
@@ -169,6 +181,8 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\ForumMembersController.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
+    <Compile Include="Controllers\KnowledgesController.cs" />
+    <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\MastersController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -246,6 +260,30 @@
     <Compile Include="Migrations\202304010817177_addAssnTables.Designer.cs">
       <DependentUpon>202304010817177_addAssnTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304040701143_addKnowledgeTable.cs" />
+    <Compile Include="Migrations\202304040701143_addKnowledgeTable.Designer.cs">
+      <DependentUpon>202304040701143_addKnowledgeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304060633087_fixContentMaxLength.cs" />
+    <Compile Include="Migrations\202304060633087_fixContentMaxLength.Designer.cs">
+      <DependentUpon>202304060633087_fixContentMaxLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304120833548_addLandingTable.cs" />
+    <Compile Include="Migrations\202304120833548_addLandingTable.Designer.cs">
+      <DependentUpon>202304120833548_addLandingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304140227107_fixLandingTable.cs" />
+    <Compile Include="Migrations\202304140227107_fixLandingTable.Designer.cs">
+      <DependentUpon>202304140227107_fixLandingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304140246250_addLanding3Tables.cs" />
+    <Compile Include="Migrations\202304140246250_addLanding3Tables.Designer.cs">
+      <DependentUpon>202304140246250_addLanding3Tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304140706556_fixLandingPageContentTable.cs" />
+    <Compile Include="Migrations\202304140706556_fixLandingPageContentTable.Designer.cs">
+      <DependentUpon>202304140706556_fixLandingPageContentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AboutUs.cs" />
     <Compile Include="Models\AssnBusiness.cs" />
@@ -259,6 +297,11 @@
     <Compile Include="Models\ForumReply.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\IAAIDbContext.cs" />
+    <Compile Include="Models\Knowledge.cs" />
+    <Compile Include="Models\LandingPageContent.cs" />
+    <Compile Include="Models\LandingPageLink.cs" />
+    <Compile Include="Models\LandingPageSlider.cs" />
+    <Compile Include="Models\LandingPageViewModel.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Master.cs" />
     <Compile Include="Models\News.cs" />
@@ -495,6 +538,7 @@
     <Content Include="Picture\S__13705236.jpg" />
     <Content Include="Picture\S__13705239.jpg" />
     <Content Include="Picture\william.jpg" />
+    <Content Include="RecaptchaNet.Readme.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="assets\font-awesome\fonts\fontawesome-webfontba72.eot" />
@@ -566,7 +610,89 @@
     <Content Include="Areas\Manager\Views\AssnLicenses\Index.cshtml" />
     <Content Include="Areas\Manager\Views\AssnRefer\Index.cshtml" />
     <Content Include="Areas\Manager\Views\AssnSurvey\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Knowledges\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Knowledges\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Knowledges\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Knowledges\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Knowledges\Index.cshtml" />
+    <Content Include="Scripts\css\animate.css" />
+    <Content Include="Scripts\css\bootstrap.min.css" />
+    <Content Include="Scripts\css\colorbox.css" />
+    <Content Include="Scripts\css\font-awesome.min.css" />
+    <Content Include="Scripts\css\owl.carousel.css" />
+    <Content Include="Scripts\css\owl.theme.css" />
+    <Content Include="Scripts\css\responsive.css" />
+    <Content Include="Scripts\css\style.css" />
+    <Content Include="Scripts\dist\tree.js.map" />
+    <Content Include="Scripts\dist\tree.min.js.map" />
+    <Content Include="Areas\Manager\Views\LandingPageLinks\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageLinks\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageLinks\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageLinks\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageLinks\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageSliders\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageSliders\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageSliders\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageSliders\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageSliders\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageContents\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageContents\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageContents\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageContents\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\LandingPageContents\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\dist\tree.js" />
+    <Content Include="Scripts\dist\tree.min.js" />
+    <Content Include="Scripts\Images\accent.png" />
+    <Content Include="Scripts\Images\banner-bg.jpg" />
+    <Content Include="Scripts\Images\bullet.png" />
+    <Content Include="Scripts\Images\calendar.jpg" />
+    <Content Include="Scripts\Images\controls.png" />
+    <Content Include="Scripts\Images\crossword.png" />
+    <Content Include="Scripts\Images\down-arrow-color.png" />
+    <Content Include="Scripts\Images\down-arrow-transparent.png" />
+    <Content Include="Scripts\Images\down-arrow-white.png" />
+    <Content Include="Scripts\Images\favicon.ico" />
+    <Content Include="Scripts\Images\heroAccent.png" />
+    <Content Include="Scripts\Images\logo.png" />
+    <Content Include="Scripts\Images\mission.png" />
+    <Content Include="Scripts\Images\news-img.jpg" />
+    <Content Include="Scripts\Images\newsimg-01.jpg" />
+    <Content Include="Scripts\Images\newsimg-02.jpg" />
+    <Content Include="Scripts\Images\newsimg-03.jpg" />
+    <Content Include="Scripts\Images\newsimg-04.jpg" />
+    <Content Include="Scripts\Images\newsimg-size.jpg" />
+    <Content Include="Scripts\Images\newsimg.jpg" />
+    <Content Include="Scripts\Images\newsletter-icon.png" />
+    <Content Include="Scripts\Images\orderedList0.png" />
+    <Content Include="Scripts\Images\orderedList1.png" />
+    <Content Include="Scripts\Images\orderedList2.png" />
+    <Content Include="Scripts\Images\orderedList3.png" />
+    <Content Include="Scripts\Images\orderedList4.png" />
+    <Content Include="Scripts\Images\orderedList5.png" />
+    <Content Include="Scripts\Images\orderedList6.png" />
+    <Content Include="Scripts\Images\orderedList7.png" />
+    <Content Include="Scripts\Images\orderedList8.png" />
+    <Content Include="Scripts\Images\orderedList9.png" />
+    <Content Include="Scripts\Images\part2_menu_1.jpg" />
+    <Content Include="Scripts\Images\part2_menu_2.jpg" />
+    <Content Include="Scripts\Images\part2_menu_3.jpg" />
+    <Content Include="Scripts\Images\part3.jpg" />
+    <Content Include="Scripts\Images\partner.jpg" />
+    <Content Include="Scripts\Images\partner1.jpg" />
+    <Content Include="Scripts\Images\partner2.jpg" />
+    <Content Include="Scripts\Images\partner3.jpg" />
+    <Content Include="Scripts\Images\partner4.jpg" />
+    <Content Include="Scripts\Images\partner5.jpg" />
+    <Content Include="Scripts\Images\pro-size.jpg" />
+    <Content Include="Scripts\Images\pro.jpg" />
+    <Content Include="Scripts\Images\pro1.jpg" />
+    <Content Include="Scripts\Images\pro2.jpg" />
+    <Content Include="Scripts\Images\pro3.jpg" />
+    <Content Include="Scripts\Images\pro4.jpg" />
+    <Content Include="Scripts\Images\slider-main-01.jpg" />
+    <Content Include="Scripts\Images\slider-main-02.jpg" />
+    <Content Include="Scripts\Images\test.jpg" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -576,6 +702,19 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\gmap3.min.js" />
+    <Content Include="Scripts\js\html5shiv.js" />
+    <Content Include="Scripts\js\ini.isotope.js" />
+    <Content Include="Scripts\js\isotope.js" />
+    <Content Include="Scripts\js\jquery.colorbox.js" />
+    <Content Include="Scripts\js\jquery.counterup.min.js" />
+    <Content Include="Scripts\js\jquery.js" />
+    <Content Include="Scripts\js\owl.carousel.min.js" />
+    <Content Include="Scripts\js\respond.min.js" />
+    <Content Include="Scripts\js\waypoints.min.js" />
+    <Content Include="Scripts\js\wow.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -620,6 +759,9 @@
     <Content Include="Views\AssnLicenses\Index.cshtml" />
     <Content Include="Views\AssnRefer\Index.cshtml" />
     <Content Include="Views\AssnSurvey\Index.cshtml" />
+    <Content Include="Views\Knowledges\Index.cshtml" />
+    <Content Include="Views\Knowledges\Details.cshtml" />
+    <Content Include="Views\LandingPage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -690,6 +832,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304010817177_addAssnTables.resx">
       <DependentUpon>202304010817177_addAssnTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304040701143_addKnowledgeTable.resx">
+      <DependentUpon>202304040701143_addKnowledgeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304060633087_fixContentMaxLength.resx">
+      <DependentUpon>202304060633087_fixContentMaxLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304120833548_addLandingTable.resx">
+      <DependentUpon>202304120833548_addLandingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304140227107_fixLandingTable.resx">
+      <DependentUpon>202304140227107_fixLandingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304140246250_addLanding3Tables.resx">
+      <DependentUpon>202304140246250_addLanding3Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304140706556_fixLandingPageContentTable.resx">
+      <DependentUpon>202304140706556_fixLandingPageContentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

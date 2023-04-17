@@ -1,0 +1,109 @@
+﻿@model IAAI.Models.LandingPageContent
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>新增首頁中間圖片</h2>
+@*在 View 中設定 input type 為 file 的欄位名稱為 Pictures[]*@
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>LandingPageContent</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture1, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="editor-field">
+                <input type="file" id="Pictures1" name="Pictures1" accept="image/gif, image/jpeg, image/png" />
+                <img id="preview1" src="#" alt="Preview1" style="display: none" width="200" /><br>
+
+                @Html.ValidationMessageFor(model => model.Picture1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture2, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="editor-field">
+                <input type="file" id="Pictures2" name="Pictures2" accept="image/gif, image/jpeg, image/png" />
+                <img id="preview2" src="#" alt="Preview2" style="display: none" width="200" /><br>
+
+                @Html.ValidationMessageFor(model => model.Picture2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture3, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="editor-field">
+                <input type="file" id="Pictures3" name="Pictures3" accept="image/gif, image/jpeg, image/png" />
+                <img id="preview3" src="#" alt="Preview3" style="display: none" width="200" /><br>
+
+                @Html.ValidationMessageFor(model => model.Picture3, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture4, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="editor-field">
+                <input type="file" id="Pictures4" name="Pictures4" accept="image/gif, image/jpeg, image/png" />
+                <img id="preview4" src="#" alt="Preview4" style="display: none" width="200" /><br>
+
+                @Html.ValidationMessageFor(model => model.Picture4, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+    function previewImage(input, previewId) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#' + previewId).attr('src', e.target.result);
+                $('#' + previewId).show();
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#Pictures1').change(function () {
+        previewImage(this, 'preview1');
+    });
+
+    $('#Pictures2').change(function () {
+        previewImage(this, 'preview2');
+    });
+
+    $('#Pictures3').change(function () {
+        previewImage(this, 'preview3');
+    });
+
+    $('#Pictures4').change(function () {
+        previewImage(this, 'preview4');
+    });
+</script>

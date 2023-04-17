@@ -144,7 +144,7 @@ namespace IAAI.Controllers
                         return View(forumMember);
                     }
 
-                    forumMember.Copy = CertifiedMember.SaveUpImage(Picture);
+                    forumMember.Copy =Utility.SaveUpImage(Picture);
                 }
 
                 forumMember.HashPassword();
@@ -256,7 +256,7 @@ namespace IAAI.Controllers
                         return View(forumMember);
                     }
 
-                    forumMember.Copy = CertifiedMember.SaveUpImage(Picture);
+                    forumMember.Copy = Utility.SaveUpImage(Picture);
                 }
 
                 if (!string.IsNullOrEmpty(newPassword) && !string.IsNullOrEmpty(newConfirmedPassword))

@@ -1,9 +1,19 @@
-﻿@model IAAI.Models.News
+﻿@using IAAI.Models
+@model IAAI.Models.News
 
 @{
-    ViewBag.Title = "最新消息";
+//ViewBag.Title = "最新消息";
+//ViewBag.SideTitle = "訊息發布";
+//Layout = "~/Views/Shared/FrontLayout.cshtml";
+    ViewBag.RightTitle = "最新消息";
     ViewBag.SideTitle = "訊息發布";
+
+    ViewBag.MenuItemCount = 1;
+    ViewBag.MenuItem0Name = "訊息發布";
+    ViewBag.MenuItem0Url = Url.Action("Index", "News"); 
+
     Layout = "~/Views/Shared/FrontLayout.cshtml";
+    List<News> listNews = ViewBag.listNews;
 }
 
 <div class="post-content">
@@ -22,10 +32,10 @@
 
 
         <div class="entry-content topmargin-min">
-            
-            @Html.DisplayFor(model => model.Content)
 
-           
+            @Html.Raw(Model.Content)
+
+
 
         </div>
 

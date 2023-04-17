@@ -69,7 +69,7 @@ namespace IAAI.Areas.Manager.Controllers
                         return View(forumMember);
                     }
 
-                    forumMember.Copy = CertifiedMember.SaveUpImage(Picture);
+                    forumMember.Copy = Utility.SaveUpImage(Picture);
                 }
 
                 if (!string.IsNullOrEmpty(newPassword) && !string.IsNullOrEmpty(newConfirmedPassword))

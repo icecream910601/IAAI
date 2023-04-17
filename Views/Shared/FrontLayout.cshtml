@@ -32,7 +32,8 @@
 
     <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="~/front/images/favicon.ico" type="~/front/image/x-icon" />
+    @*<link rel="shortcut icon" href="~/front/images/favicon.ico" type="~/front/image/x-icon" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS
     ================================================== -->
@@ -51,7 +52,7 @@
     <link rel="stylesheet" href="~/front/css/owl.theme.css">
     <!-- Colorbox -->
     <link rel="stylesheet" href="~/front/css/colorbox.css">
-    
+
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
@@ -70,7 +71,7 @@
             <div class="container">
                 <div class="row">
                     <div class="logo col-md-6 col-sm-7 col-xs-12 ">
-                        <a href="index.html">
+                        <a href="@Url.Action("Index", "LandingPage")">
                             <img src="~/front/images/logo.png" alt="國際縱火調查人員協會臺灣分會" title="國際縱火調查人員協會臺灣分會">
                         </a>
                     </div><!-- logo end -->
@@ -153,7 +154,7 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="知識庫">知識庫 @*<i class="fa fa-angle-down"></i>*@</a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">知識庫下載</a></li>
+                                            <li><a href="@Url.Action("Index", "Knowledges")">知識庫下載</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
@@ -180,7 +181,7 @@
             </div><!--/ Container end -->
         </nav><!--/ Navigation end -->
 
-        <div id="banner-area" class="banner-area" style="background-image:url(~/front/images/banner-bg.jpg)">
+        <div id="banner-area" class="banner-area" style=" background-image: url('../../Scripts/Images/banner-bg.jpg'); ">
             <!-- Subpage title start -->
             <div class="banner-text text-right">
                 <div class="container">
@@ -189,7 +190,7 @@
                             <ul class="breadcrumb">
                                 <li>首頁</li>
                                 <li>>@ViewBag.SideTitle</li>
-                                <li><a href="#"> @ViewBag.Title</a></li>
+                                <li><a href="#"> @ViewBag.Title </a></li>
                             </ul>
                         </div>
                     </div>

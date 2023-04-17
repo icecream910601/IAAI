@@ -75,6 +75,7 @@ namespace IAAI.Areas.Manager.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)] // 允許 HTML 標記或輸入
         public ActionResult Create([Bind(Include = "Id,Picture,StartDate,Subject,Content,ClassId")] News news,
             HttpPostedFileBase Picture)
         {
@@ -88,7 +89,7 @@ namespace IAAI.Areas.Manager.Controllers
                         return View(news);
                     }
 
-                    news.Picture = CertifiedMember.SaveUpImage(Picture);
+                    news.Picture =Utility.SaveUpImage(Picture);
                 }
 
                 news.Content = Request.Form["Content"];
@@ -132,6 +133,7 @@ namespace IAAI.Areas.Manager.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)] // 允許 HTML 標記或輸入
         public ActionResult Edit([Bind(Include = "Id,Picture,StartDate,Subject,Content,ClassId")] News news,
             HttpPostedFileBase Picture)
         {
@@ -145,7 +147,7 @@ namespace IAAI.Areas.Manager.Controllers
                         return View(news);
                     }
 
-                    news.Picture = CertifiedMember.SaveUpImage(Picture);
+                    news.Picture = Utility.SaveUpImage(Picture);
                 }
 
                 db.Entry(news).State = EntityState.Modified;

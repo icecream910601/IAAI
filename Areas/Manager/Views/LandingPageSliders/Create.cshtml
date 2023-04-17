@@ -1,0 +1,66 @@
+﻿@model IAAI.Models.LandingPageSlider
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>新增首頁上方輪播圖</h2>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>LandingPageSlider</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.SliderPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SliderPicture, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SliderPicture, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.SliderPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="editor-field">
+                <input type="file" id="SliderPicture" name="SliderPicture" accept="image/gif, image/jpeg, image/png" />
+                <img id="preview" src="#" alt="Preview" style="display: none" width="200" /><br>
+                @Html.ValidationMessageFor(model => model.SliderPicture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+                $('#preview').show();
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $('#SliderPicture').change(function () {
+        previewImage(this);
+    });
+</script>
